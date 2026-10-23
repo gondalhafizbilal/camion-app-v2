@@ -1,0 +1,4 @@
+// Deprecated: keep for backward compatibility only.
+// Active files:
+// - Debug.xcconfig -> Facebook.debug.xcconfig (from .env.development)
+// - Release.xcconfig -> Facebook.release.xcconfig (from .env.production)

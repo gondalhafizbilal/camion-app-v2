@@ -1,0 +1,4511 @@
+{
+	"info": {
+		"_postman_id": "0219b22b-2a5a-46a4-a98b-b759fe96ac43",
+		"name": "Camion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health",
+			"item": [
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User Auth",
+					"item": [
+						{
+							"name": "Register User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"Camion User\",\r\n    \"emailAddress\": \"user@camion-app.com\",\r\n    \"password\": \"your-password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/user/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"user",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailAddress\": \"user@camion-app.com\",\r\n    \"password\": \"your-password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/user/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlM2JmZmNjYS1hN2RiLTQ1ODItYjUzMi1hNGMzZjRmMDIxYjciLCJ0eXBlIjoidXNlciIsInN1YiI6IjQ3ZGE5MzE1LWYwNmItNDQxOS1hNGUyLTFkNGMyMGI5OWIxOSIsImlhdCI6MTc3MzgxMDA5OCwiZXhwIjoxNzczODEyNjkwLCJpc3MiOiJDYW1pb24ifQ.H0TOAjWb3Utr363pTEljf0laD8DD_QivxBDLYPpJa59tESEodjk8Oz2Ab8QoDY-Kp7mCQlNBWMcKPMoGK4Z80NUqDQMsegaUBSID4hgYOFxbPtnKFuGyX5gbC0-ec3c5WNnQXqYjdTvMMSB0dpfvEtYsOY0R0zWtLckRh8BEe0WIi1oTlGFd8yLaIwZiLTxKpB2yhthtsbCkaJXxqEM9qRk8Uh2VvG4iroXuu5Ggdtx6aBLCfMM7ZA71kftrh8MNDh2EOIOADIVeb70aoGMslvo-AdHaYg-iGrZEmjISUYoxznqZt3oKRckJSPESU8c0Hz7DfcizRCebrIC805SWRQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/v1/auth/user/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"user",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User (Self)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxODA5YWE4Zi03M2ZhLTQyOGQtOTQwMi03OWNlYWVlZWQ5MTAiLCJ0eXBlIjoidXNlciIsInN1YiI6IjQ3ZGE5MzE1LWYwNmItNDQxOS1hNGUyLTFkNGMyMGI5OWIxOSIsImlhdCI6MTc3MzgxMDIxOCwiZXhwIjoxNzczODEyODEwLCJpc3MiOiJDYW1pb24ifQ.dAXpVezR-_qX2SsXm4067RaxozTuGhCEvB0O8wcgkcHkG2tqHYhrGuEkNRlMbh1kfS5b20nCPv7Qo_Bj9vyyWr83HOhlbe_4yvqFsoTK-8yEJqk4XaCCvi0lzeJfcxBSy0Z77hGRZ1wyoh9C6EAjktHMXqRJ0_uQd6sgcP9ZuTGMark_EhlPiD0acdf0cXlZlFZxaNtn9R-yL0Yk3Ae7EeX_ywR9vEP77MYsgRS-zkZck3HAz7siEIlhBbHUjTs4YCyeDOxs5_nPqhtWQShT3aaH9QJAI8GcvBzUOSCBPcis7YdI-PXqF_tRPjcfxDqSxKtbUBgHzENOi30PL7gZyw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"Micheal\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/user/self",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"user",
+										"self"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Email Address (Self)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MDRlNjk0NC0yNDIzLTRmYTctYjkyMy1kNjAwNDI2ZjQyNTIiLCJ0eXBlIjoidXNlciIsInN1YiI6IjQ3ZGE5MzE1LWYwNmItNDQxOS1hNGUyLTFkNGMyMGI5OWIxOSIsImlhdCI6MTc3MzgxMDM4NiwiZXhwIjoxNzczODEyOTc4LCJpc3MiOiJDYW1pb24ifQ.RpoXZm3VlnibQmXmeUlyBimcuSx5v9wDz21X_3gsD9CRGGURomND3cqIoARQlv7-PAaDkP_D5ttllba7GeAd-ZliGFqFztZaYJV3ivHVtD2kgMg0EJVuRoCfBECfGskgNOVaiDIMnobfUKOk1S3AlVyrTgMFJk1BOPLV-L7Svu5L70vI11-w-sysbzmw8-3OHGrsaA2Hbz0NI29BiD97MO3GtyFKYsunGZAqTjxeVOXwhKKFgys6Yj_IVqtVv-8jK2PRu4sk4U8R4qLPmX3AtCHCY8PuWnWQgNX9QTNpXROBxuyUBvPEcLtofuSjVsHRc3jslmcHGChoKYGBkoQo8w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailAddress\": \"james@raw.net\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/user/self/email-address",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"user",
+										"self",
+										"email-address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User Password (Self)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2MDRlNjk0NC0yNDIzLTRmYTctYjkyMy1kNjAwNDI2ZjQyNTIiLCJ0eXBlIjoidXNlciIsInN1YiI6IjQ3ZGE5MzE1LWYwNmItNDQxOS1hNGUyLTFkNGMyMGI5OWIxOSIsImlhdCI6MTc3MzgxMDM4NiwiZXhwIjoxNzczODEyOTc4LCJpc3MiOiJDYW1pb24ifQ.RpoXZm3VlnibQmXmeUlyBimcuSx5v9wDz21X_3gsD9CRGGURomND3cqIoARQlv7-PAaDkP_D5ttllba7GeAd-ZliGFqFztZaYJV3ivHVtD2kgMg0EJVuRoCfBECfGskgNOVaiDIMnobfUKOk1S3AlVyrTgMFJk1BOPLV-L7Svu5L70vI11-w-sysbzmw8-3OHGrsaA2Hbz0NI29BiD97MO3GtyFKYsunGZAqTjxeVOXwhKKFgys6Yj_IVqtVv-8jK2PRu4sk4U8R4qLPmX3AtCHCY8PuWnWQgNX9QTNpXROBxuyUBvPEcLtofuSjVsHRc3jslmcHGChoKYGBkoQo8w",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"passwordOld\": \"your-password\",\r\n    \"passwordNew\": \"your-password\",\r\n    \"passwordConfirm\": \"your-password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/user/self/password",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"user",
+										"self",
+										"password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Setup MFA",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1NTUwOTZlYS03NmJiLTRmOTMtOTgyNy1iNGYzMzdkYTk1NjgiLCJ0eXBlIjoidXNlciIsInN1YiI6IjNhNjc3YzczLWJhODQtNGNlMC1iM2FjLWIzMDg4MDY2OTdjYiIsImlhdCI6MTc3MzA2MDMzNCwiZXhwIjoxNzczMDYyOTI2LCJpc3MiOiJDYW1pb24ifQ.BLiBcEMxsMIW2ZS5h_duJMi4Vp0bXRG1O06MDUbt02jCouSf6E2DQoWtUl94G22IyhYDk1_XQEdcWoWYr-gViNkMYki8lPGjWqWYBiHgrH-NtAnf1tL0EMBzpeiLxCj6vpzHrp5JJKFcUlgS5lePclz-7JzrD7uOfqtio_YD7B6HOa-597TM_UHma60YOchKzziHmVYqGONQm-Cu4gICRxohhSkd0tVE995Nr6Aj1GNz4bBmRnjHD0Zpr9gHwW_7wRHH18ewVlnd8aLebmK0kaZE0XR9QsEAfyHDUS09hugWSeVgkPuV5F0-YJ7_1PFSi2XyyLNfy7WVwb1xSqtAtQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/auth/user/mfa/setup",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"user",
+										"mfa",
+										"setup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Enable MFA",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1NTUwOTZlYS03NmJiLTRmOTMtOTgyNy1iNGYzMzdkYTk1NjgiLCJ0eXBlIjoidXNlciIsInN1YiI6IjNhNjc3YzczLWJhODQtNGNlMC1iM2FjLWIzMDg4MDY2OTdjYiIsImlhdCI6MTc3MzA2MDMzNCwiZXhwIjoxNzczMDYyOTI2LCJpc3MiOiJDYW1pb24ifQ.BLiBcEMxsMIW2ZS5h_duJMi4Vp0bXRG1O06MDUbt02jCouSf6E2DQoWtUl94G22IyhYDk1_XQEdcWoWYr-gViNkMYki8lPGjWqWYBiHgrH-NtAnf1tL0EMBzpeiLxCj6vpzHrp5JJKFcUlgS5lePclz-7JzrD7uOfqtio_YD7B6HOa-597TM_UHma60YOchKzziHmVYqGONQm-Cu4gICRxohhSkd0tVE995Nr6Aj1GNz4bBmRnjHD0Zpr9gHwW_7wRHH18ewVlnd8aLebmK0kaZE0XR9QsEAfyHDUS09hugWSeVgkPuV5F0-YJ7_1PFSi2XyyLNfy7WVwb1xSqtAtQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"verificationCode\": \"509268\",\r\n    \"password\": \"1@quetta\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/user/mfa/enable",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"user",
+										"mfa",
+										"enable"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Customer Auth",
+					"item": [
+						{
+							"name": "Register Customer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"Your Name\",\r\n    \"emailAddress\": \"your-name3@your-domain.com\",\r\n    \"countryCode\": \"+974\",\r\n    \"phoneNumber\": \"3234 5675\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/customer/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"customer",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Customer (Email Address)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailAddress\": \"your-name@your-domain.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/customer/login/email-address",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"customer",
+										"login",
+										"email-address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Customer (Email Address)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzZGRlZWUxMS04NDkwLTQzNDUtODcyNy1iYzEyMTY3NWU2MGIiLCJzdWIiOiIxNWJjZmM3MS02YzBlLTRlY2UtOGJkOS1lMmE2MGY3NDUwZjgiLCJpYXQiOjE3NzYzMjIwNTcsImV4cCI6MTc3NjQwODQ1NywiaXNzIjoiQ2FtaW9uIn0.SDUuOdzVO5jSYS3f8vENQuFtTmnueY6grWNz8DvJYMrqpN_M49pwA35sbX9C8s6SjVXzkQUBgtF7kAj5a2wvE1VaV5ZwzmNUlqE-rt9mxiigVagDiWro-qyJpbsrfFZbSQoPX_t4GglbDNOqS9WiA8nOzN65_IyA-qSV4VrbjbNps4cao2UJI42jEm1mKUOjijsutoFtiGu4R4NaGd2LQUsdJ7Dv9Chbnluz4vLpMX9B-ByAg_SqYnxjj5J2DhdCEZSpaxaREyDdb0KYvsXiDenc-RBU45wpZxaUW6qiZ11c8iU_JmKiOCQHy5m3QNm8gEULq4OZQLUUTE3jVr_ItQ\",\r\n    \"secret\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/customer/verify/email-address",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"customer",
+										"verify",
+										"email-address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Customer (Phone Number)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"countryCode\": \"+974\",\r\n    \"phoneNumber\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/customer/login/phone-number",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"customer",
+										"login",
+										"phone-number"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verify Customer (Phone Number)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"token\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhOTlmYThiNi0zMjY0LTRhODgtOWZlMi04YTdiM2FmOTc1NzMiLCJzdWIiOiI3NTU2N2NiMy00MTAxLTRhNTMtOWE0ZS00YWQ5ZThkNDc0NDIiLCJpYXQiOjE3NzU5MDM2NjUsImV4cCI6MTc3NTkwNjI1NywiaXNzIjoiQ2FtaW9uIn0.DWz91_i_MoExHxKayRiJBwSsKOtsGJblDQ0TNtatps3lPIsZVvYaejCZ2z2SEaoHKdsxCObAiH54fsC72ObHg7EGGUZockj2Ue7EM91QJYa-kUrZHtOueabxG6LF7JmTzyMD2lXgGHfd2UC7OciPvEexMkbvIYKm1Jg48YjWs0DLOS6D_fA3XCxf5-uMO32rlO7J58Ka5edb08A4vZcZL8JTeTu25qCaszd8wC6MCL3B-jyfJrlkDDE2IEIu6NRDxLw3och8Ik47l7v_WoLZb2Xv-Hi-bFxYOog-JzQ3uXVcq6CbD5R_xTgNARVxfCJGTAnBST89wSR_nL-KtvXj0Q\",\r\n    \"secret\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/customer/verify/phone-number",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"customer",
+										"verify",
+										"phone-number"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout Customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkYTg0MTA1OS1mYjI4LTQzZmQtOGVjMC1lZGQyMWFjZDM5ZWUiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI3N2ExMzVlOS02ZjU3LTQ5NzItOTU2ZC1kN2ZkMDkyMmFhYzAiLCJpYXQiOjE3NzU2MjcyOTYsImV4cCI6MTc3NTYyOTg4OCwiaXNzIjoiQ2FtaW9uIn0.Z9LbhrX5Fny0mBtWK1SQvHvws8_R_yqBjC2XMqyD0vjTNDSWQ8AFmUHfyvo2oR4HuTGf6XiU5s_bHpohRhLJU1KhiPzP9zJSNKcx0XwXSbJTPSwZeG4Bx7JLyNf1t8Zn2B1065bShar2vK0WdxpiZT2sFPFBA5iAm2TxgC-Ff8MyPfflCZZVZqpsffDeS-PiR5_-9O9Jy8BjSsFiSkzCSxH7go50LMGnescewmJ5vVL1KUhykjxa0A6t5sL9D-gv5vBSPZimrW9JwKXG4B_1BIcNFHNsil5a-XfeULAZsAZEfjnNXMHTyqXzSotu-_ISbZkztnwtatEfj7LkxgJCLA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/auth/customer/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"customer",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Current Customer's Profile",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlYTE2ODMxOS03OTJlLTQ3YWUtODdiMi03M2QyMzVlYWVjY2UiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI2YzkwZDhlZi03ZjlmLTRkY2ItOGRiMy05NzY5ZmE3NzFhZTciLCJpYXQiOjE3NzYwMTExOTEsImV4cCI6MTc3NjAxMzc4MywiaXNzIjoiQ2FtaW9uIn0.Qxm1C3Y0KudH0YJOtjhoTPWNbbupoTo3doYdzTgcCLNo1shD8ZtisebX7N_X6CgZ4nCsmBlgHDDZ6fajnKZBCz2kdwtI64mVEUlYVg3qDQCnvjAwV4t11yinfn6sR8ftquKjKhD9X8p0sCmzmtDDmklTFTeDcHl4S8DDoHJKK3vq7OLKuID5rmFXMzlGnlOt2Oesp9mTBn1UGozOijpX-t2tOEa61ann9H-HoyHTuwDC618JAFQQrmptyXf4tvqjSqS1GtsjyHBoeZ6eVagZVOKARdZQjRyse5G4-kxc8SZ_JgdVorTedw-UGc80VjGhnsQRyvXflcP-Yi-dvxzfMw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"James\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/customer/self",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"customer",
+										"self"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Current Customer's Email Address",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiN2M0NTFkZC0xZTdkLTRiNWItYTk4My04YjdlYjM0NjU4ZmUiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI5MWY1YzVhMi1iODI4LTQyMTgtYjZlYi0wNGU4N2RmNTdjNTMiLCJpYXQiOjE3NzU2MzAzMzEsImV4cCI6MTc3NTYzMjkyMywiaXNzIjoiQ2FtaW9uIn0.PRuDBNbUY7esAhoSO_kWvK3C2kq60vmke7zD-mtbcbMpAccRsO3hdtgSmllo3dSV1ovWvYrimXZqgGlQyaNZlwmtfNiTHGYmI04-bqToAmEtDyBEGWcUW5BecZfr6mMrEyI6qKNuF4vwg7ATiTwaqYc0jBvbgDBEb-a3Stel8sRuSWuC9zgr3KfgR8josCc_LXUSa3XZB9x7OE-X86_1wH4A4D5goEjjVGPy6NY-s-xIeFShnbVS5b3rmvDqKI2nnATHBNaecdfNBSkivYPgrh4yzzK7_82Zy0ycnEEIdA8CBzQQ3I6h7L_30xkZYGpoiQsbKEvppAoqgjht1PcXLA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailAddress\": \"your-name@your-domain.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/customer/self/email-address",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"customer",
+										"self",
+										"email-address"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Guest Auth",
+					"item": [
+						{
+							"name": "Register Guest",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"deviceId\": \"1203434\",\r\n    \"token\": \"12349\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/auth/guest/register",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"auth",
+										"guest",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Amin Ullah\",\r\n    \"emailAddress\": \"james@raw.net\",\r\n    \"password\": \"your-password\",\r\n    \"role\": \"super-admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/users/93c97912-df5f-475d-ba50-b06621f57e11",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"93c97912-df5f-475d-ba50-b06621f57e11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Amin Ullah John\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/users/90c9310e-ffa3-4d90-ab20-56bf67edb501",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"90c9310e-ffa3-4d90-ab20-56bf67edb501"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Email Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emailAddress\": \"your-name@outlook.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/users/90c9310e-ffa3-4d90-ab20-56bf67edb501/email-address",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"90c9310e-ffa3-4d90-ab20-56bf67edb501",
+								"email-address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"your-password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/users/90c9310e-ffa3-4d90-ab20-56bf67edb501/password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"90c9310e-ffa3-4d90-ab20-56bf67edb501",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/users/93c97912-df5f-475d-ba50-b06621f57e11",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"users",
+								"93c97912-df5f-475d-ba50-b06621f57e11"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0YWJmMmQwYi01NTBiLTRmNDMtYjI0MS1jZGY4YzQ0ZDRkN2QiLCJ0eXBlIjoidXNlciIsInN1YiI6IjkwYzkzMTBlLWZmYTMtNGQ5MC1hYjIwLTU2YmY2N2VkYjUwMSIsImlhdCI6MTc3MjgyMDg3MiwiZXhwIjoxNzcyODIzNDY0LCJpc3MiOiJDYW1pb24ifQ.ID73SydqqC39yLCwfbEetRsB7ZWfAvgDO94kIdqzAjeqsWBcis5N81V8e939W7M2ZR91pNtw7e4xw_TS4LPL3uoredgoI4E9ebZVYU_Vlzq0-OuV2Ne4gcXeZP_URBecuUwXTFA8gq1lbCvaFxwE2qlAwz4CXlCHPjMTI2Z67Wn-tSg9PTaGu3_n63sbzjgtSkBGJqX1ubIg0iZp7JHVsg_ArzrqtFpKbsme3I_-t4ug8X_dAJEWtCXBVUA_HEP1_h5Cota3rFHbWGkXyB87SydxWhkJ1AR43eWfrygmKKd8cGBQ8KoZJ2LtD1oKyUyD1SMkQwq_nMdhibCNRlD_kw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Amin Ullah\",\r\n    \"emailAddress\": \"your-password@outlook.ram\",\r\n    \"countryCode\": \"PK\",\r\n    \"phoneNumber\": \"03048112109\",\r\n    \"password\": \"your-password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/customers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/customers/960b5366-8263-41cf-8ceb-2c0398e59a34",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers",
+								"960b5366-8263-41cf-8ceb-2c0398e59a34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"James\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers/960b5366-8263-41cf-8ceb-2c0398e59a34",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers",
+								"960b5366-8263-41cf-8ceb-2c0398e59a34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Email Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"emailAddress\": \"your-password@outlook.raw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers/960b5366-8263-41cf-8ceb-2c0398e59a34/email-address",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers",
+								"960b5366-8263-41cf-8ceb-2c0398e59a34",
+								"email-address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"your-password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customers/960b5366-8263-41cf-8ceb-2c0398e59a34/password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers",
+								"960b5366-8263-41cf-8ceb-2c0398e59a34",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/customers/cc137b8a-239d-4cf2-be06-f0e48fe7f2ab",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customers",
+								"cc137b8a-239d-4cf2-be06-f0e48fe7f2ab"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3YjZlYjk4Yi1jYTBjLTRmNTAtOGRmZS1jZjMzZDJlYzllYTAiLCJ0eXBlIjoidXNlciIsInN1YiI6IjNhNjc3YzczLWJhODQtNGNlMC1iM2FjLWIzMDg4MDY2OTdjYiIsImlhdCI6MTc3MjgyMzI0MSwiZXhwIjoxNzcyODI1ODMzLCJpc3MiOiJDYW1pb24ifQ.ILx28E2ix4Fb-rliRhCUH_Ll8X-krjCxDDYLx9L0vBvZumt-XSOE2nYarPoWs9m5E7O6LjqJPaEk393On5kEuMzH-RpKPKhh_x3CsCh-eriL7pK4B0vuht9BEIii6uMf98qlN-KZF_ZKpNLvIcxapFnvoJjr7CJcWyOuzvydtRCz0McrBDVmutaum0H_Z99qVlMUZh_UytZ215PpzE_qjA0Svbecn3pRzfzqzVsMWx9-LwfpIQRjjl_qGh5J9boFTCIOtviCRyQl1RCJ0bjpmbLcvNk7CwbtCM_R_9PTwP6tO97p6AJ2AbKx-xTTj9FVmj6OcyfJR3PfrkSymj-GwA",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Customer Addresses",
+			"item": [
+				{
+					"name": "Create Customer Address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"James\",\r\n    \"countryCode\": \"+974\",\r\n    \"phoneNumber\": \"12345678\",\r\n    \"streetAddress\": \"Example Road\",\r\n    \"apartment\": \"Unit 18\",\r\n    \"zipCode\": \"12345\",\r\n    \"city\": \"Example City\",\r\n    \"state\": \"Example State\",\r\n    \"country\": \"Example country\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customer-addresses",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customer-addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Addresses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/customer-addresses",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customer-addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Address",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/customer-addresses/c394f3b0-e9a1-4467-9bfc-753f57b1869b",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customer-addresses",
+								"c394f3b0-e9a1-4467-9bfc-753f57b1869b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer Addresses",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"James\",\r\n    \"countryCode\": \"+974\",\r\n    \"phoneNumber\": \"12345678\",\r\n    \"streetAddress\": \"Example Road\",\r\n    \"apartment\": \"Unit 18\",\r\n    \"zipCode\": \"12345\",\r\n    \"city\": \"Example City\",\r\n    \"state\": \"Example State\",\r\n    \"country\": \"Example country\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customer-addresses/c394f3b0-e9a1-4467-9bfc-753f57b1869b",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customer-addresses",
+								"c394f3b0-e9a1-4467-9bfc-753f57b1869b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Customer Address",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"isDefault\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/customer-addresses/c394f3b0-e9a1-4467-9bfc-753f57b1869b",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customer-addresses",
+								"c394f3b0-e9a1-4467-9bfc-753f57b1869b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customer Addresses",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/customer-addresses/95b1d0e0-b9d2-43e4-bc73-74be0fad5282",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"customer-addresses",
+								"95b1d0e0-b9d2-43e4-bc73-74be0fad5282"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmNTQ0NmJiZC03MWE5LTRmZDYtODRkZC0yNjQ1YWRhYjA3ZGQiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI2YzkwZDhlZi03ZjlmLTRkY2ItOGRiMy05NzY5ZmE3NzFhZTciLCJpYXQiOjE3NzYwNTQ5NTAsImV4cCI6MTc3NjA1NzU0MiwiaXNzIjoiQ2FtaW9uIn0.QtB9aRuOJn7OQe_zXVy7wMDW-SnZjnj219t267B4sgQUxaDjwJDybyAqB5o2d9xilOJZPlCKIQIBtat8mYIvU6k95FU96Ceva30glrePqfHpsimOu_phcyR3IeVpXLONG3CqdWiorwoxSa7C8ZtfEzyqI-CW2e_did4L0oIg5bmUTHIK9KGQ7vXO8IYpVrYNOr_-YoxeSpP8vD_TC5g0mhoSru-P9DzJOlGmIAFyGsCQK6sDq_5zZov3WyTL2zM5PPd7o37QD3t83jgWX5sOMwRjPG4-wQLPg1fi28N4mAjewgI9q2Nd2fqPZ5ZTs6DiXm3Js_k9NrfTpZ_i7Vwzdw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Create Category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"parentUUID\": \"4708c8c7-2f1e-40a7-bf80-d524d4b5db51\",\r\n    \"slug\": \"iphones-two\",\r\n    \"name\": {\r\n        \"en\": \"iPhones\",\r\n        \"ar\": \"أحذية رياضية\"\r\n    },\r\n    \"pricingFactor\": 1.2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Category Thumbnail",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Gloria/Pictures/Test/m_Direct_Media____YWCMXRBDU8.jpg"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/categories/25308ea0-2d4b-4693-a6e4-0e4e96805f3c/thumbnail",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"categories",
+										"25308ea0-2d4b-4693-a6e4-0e4e96805f3c",
+										"thumbnail"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Categories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/categories/e45cc8ed-72ec-4780-885c-5a378d85822a",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"categories",
+										"e45cc8ed-72ec-4780-885c-5a378d85822a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Category",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"slug\": \"sneakers\",\r\n    \"name\": {\r\n        \"en\": \"Sneakers\",\r\n        \"ar\": \"Sneakers\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/categories/e45cc8ed-72ec-4780-885c-5a378d85822a",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"categories",
+										"e45cc8ed-72ec-4780-885c-5a378d85822a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Category",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"slug\": \"sneakers\",\r\n    \"name\": {\r\n        \"en\": \"Sneakers\",\r\n        \"ar\": \"Sneakers\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/categories/46fdd00d-a7d2-421e-b704-b71a7b55b7af",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"categories",
+										"46fdd00d-a7d2-421e-b704-b71a7b55b7af"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Warehouses",
+					"item": [
+						{
+							"name": "Create Warehouse",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"1688\",\r\n    \"code\": \"1688\",\r\n    \"addressLine1\": \"Example Road\",\r\n    \"addressLine2\": \"Example Building\",\r\n    \"country\": \"PAK\",\r\n    \"state\": \"Xingyang\",\r\n    \"city\": \"Xingyang\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/warehouses",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"warehouses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Warehouses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/warehouses",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"warehouses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Warehouse",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/warehouses/09d89f39-755b-4959-a5df-654c4f28c35f",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"warehouses",
+										"09d89f39-755b-4959-a5df-654c4f28c35f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Warehouse",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"1688 (Partner)\",\r\n    \"code\": \"1688\",\r\n    \"addressLine1\": \"Example Road\",\r\n    \"addressLine2\": \"Example Building\",\r\n    \"country\": \"China\",\r\n    \"state\": \"Xingyang\",\r\n    \"city\": \"Xingyang\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/warehouses/09d89f39-755b-4959-a5df-654c4f28c35f",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"warehouses",
+										"09d89f39-755b-4959-a5df-654c4f28c35f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Warehouse",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/warehouses/72b4a744-32f7-4154-8094-43a46945de46",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"warehouses",
+										"72b4a744-32f7-4154-8094-43a46945de46"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "Create New Product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"slug\": \"iphone-25\",\r\n    \"title\": {\r\n        \"en\": \"iPhone 25\",\r\n        \"ar\": \"آيفون 25\"\r\n    },\r\n    \"brief\": {\r\n        \"en\": \"From $799 or $33.29/mo. per month for 24 months\",\r\n        \"ar\": \"ابتداءً من 799 دولارًا أو 33.29 دولارًا شهريًا لمدة 24 شهرًا\"\r\n    },\r\n    \"description\": {\r\n        \"en\": \"Your new iPhone awaits. Make it yours.\",\r\n        \"ar\": \"جهاز آيفون الجديد بانتظارك. اجعله ملكك.\"\r\n    },\r\n    \"descriptionHtml\": {\r\n        \"en\": \"<b>Your new iPhone awaits. Make it yours</b>\",\r\n        \"ar\": \"<b>Your new iPhone awaits. Make it yours</b>\"\r\n    },\r\n    \"categories\": [\r\n        \"4708c8c7-2f1e-40a7-bf80-d524d4b5db51\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Products By Category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products?filters={\"slug\":\"iphones\"}&pageNumber=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products"
+									],
+									"query": [
+										{
+											"key": "filters",
+											"value": "{\"slug\":\"iphones\"}"
+										},
+										{
+											"key": "pageNumber",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Product",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/660e5d31-24e8-42e2-b8d7-1c45118ef29a",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"660e5d31-24e8-42e2-b8d7-1c45118ef29a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": {\r\n        \"en\": \"iPhone 17\",\r\n        \"ar\": \"آيفون 17\"\r\n    },\r\n    \"brief\": {\r\n        \"en\": \"From $899 or $33.29/mo. per month for 24 months\",\r\n        \"ar\": \"ابتداءً من 899 دولارًا أو 33.29 دولارًا شهريًا لمدة 24 شهرًا\"\r\n    },\r\n    \"description\": {\r\n        \"en\": \"Your new iPhone awaits. Make it yours.\",\r\n        \"ar\": \"جهاز آيفون الجديد بانتظارك. اجعله ملكك.\"\r\n    },\r\n    \"descriptionHtml\": {\r\n        \"en\": \"<b>Your new iPhone awaits. Make it yours</b>\",\r\n        \"ar\": \"<b>Your new iPhone awaits. Make it yours</b>\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/60b9ec90-0875-4319-b471-14153f9e5835",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"60b9ec90-0875-4319-b471-14153f9e5835"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Slug",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"slug\": \"iphone-17-pro\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/60b9ec90-0875-4319-b471-14153f9e5835/slug",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"60b9ec90-0875-4319-b471-14153f9e5835",
+										"slug"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Status",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"ACTIVE\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/60b9ec90-0875-4319-b471-14153f9e5835/status",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"60b9ec90-0875-4319-b471-14153f9e5835",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/fd196f6f-36d0-4b53-bb36-53ba5d7ee3b6",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"fd196f6f-36d0-4b53-bb36-53ba5d7ee3b6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product Options",
+					"item": [
+						{
+							"name": "Create Product Option",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": {\r\n        \"en\": \"Memory\",\r\n        \"ar\": \"Memory (in Arabic)\"\r\n    },\r\n    \"position\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/15f027b7-ede7-4ccf-9ce9-7cf17ca32c95/options",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"15f027b7-ede7-4ccf-9ce9-7cf17ca32c95",
+										"options"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Options",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/15f027b7-ede7-4ccf-9ce9-7cf17ca32c95/options",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"15f027b7-ede7-4ccf-9ce9-7cf17ca32c95",
+										"options"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Option",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/60acc64b-d2a8-4826-8a0d-8403d45bc1a3/options/e7685ad8-fa88-41f3-bc97-745fc41fbad2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"60acc64b-d2a8-4826-8a0d-8403d45bc1a3",
+										"options",
+										"e7685ad8-fa88-41f3-bc97-745fc41fbad2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Option",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Memory Size\",\r\n    \"position\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/60acc64b-d2a8-4826-8a0d-8403d45bc1a3/options/e7685ad8-fa88-41f3-bc97-745fc41fbad2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"60acc64b-d2a8-4826-8a0d-8403d45bc1a3",
+										"options",
+										"e7685ad8-fa88-41f3-bc97-745fc41fbad2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product Option",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Memory\",\r\n    \"position\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/60acc64b-d2a8-4826-8a0d-8403d45bc1a3/options/af582bc2-3a09-4226-96f5-b3a58231c64d",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"60acc64b-d2a8-4826-8a0d-8403d45bc1a3",
+										"options",
+										"af582bc2-3a09-4226-96f5-b3a58231c64d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product Options Values",
+					"item": [
+						{
+							"name": "Create Product Option Value",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"value\": {\r\n        \"en\": \"1 TB\",\r\n        \"ar\": \"1 TB (In Arabic)\"\r\n    },\r\n    \"position\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/15f027b7-ede7-4ccf-9ce9-7cf17ca32c95/options/dd1d28cf-37d7-47d7-88c8-9331c27d5201/values",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"15f027b7-ede7-4ccf-9ce9-7cf17ca32c95",
+										"options",
+										"dd1d28cf-37d7-47d7-88c8-9331c27d5201",
+										"values"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Product Option Values",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/15f027b7-ede7-4ccf-9ce9-7cf17ca32c95/options/dd1d28cf-37d7-47d7-88c8-9331c27d5201/values",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"15f027b7-ede7-4ccf-9ce9-7cf17ca32c95",
+										"options",
+										"dd1d28cf-37d7-47d7-88c8-9331c27d5201",
+										"values"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Product Option Value",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/60acc64b-d2a8-4826-8a0d-8403d45bc1a3/options/5926e2de-5e66-4e30-ba75-ecda7fbf4522/values/cdb4ed20-04f9-407c-bcc6-0d0f8679ddfd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"60acc64b-d2a8-4826-8a0d-8403d45bc1a3",
+										"options",
+										"5926e2de-5e66-4e30-ba75-ecda7fbf4522",
+										"values",
+										"cdb4ed20-04f9-407c-bcc6-0d0f8679ddfd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Option Value",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"value\": {\r\n        \"en\": \"2 TB\",\r\n        \"ar\": \"2 TB\"\r\n    },\r\n    \"position\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/54ce4e55-cc48-4386-b64f-16700e3ab6d1/options/76e8b712-a376-47e4-86e6-e0f96c74f3fa/values/1354c8ed-862c-4072-99cf-1a582840f769",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"54ce4e55-cc48-4386-b64f-16700e3ab6d1",
+										"options",
+										"76e8b712-a376-47e4-86e6-e0f96c74f3fa",
+										"values",
+										"1354c8ed-862c-4072-99cf-1a582840f769"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product Option Value",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"value\": \"32 GB\",\r\n    \"position\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/60acc64b-d2a8-4826-8a0d-8403d45bc1a3/options/c0c89a66-c3fc-41b7-a4b1-a165c3aa6d2c/values/5de8024c-be6a-435b-9268-8c297693c9e1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"60acc64b-d2a8-4826-8a0d-8403d45bc1a3",
+										"options",
+										"c0c89a66-c3fc-41b7-a4b1-a165c3aa6d2c",
+										"values",
+										"5de8024c-be6a-435b-9268-8c297693c9e1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product Variants",
+					"item": [
+						{
+							"name": "Create Product Variant",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"warehouse\": \"09d89f39-755b-4959-a5df-654c4f28c35f\",\r\n    \"title\": {\r\n        \"en\": \"iPhone 24 Red 1 TB\",\r\n        \"ar\": \"iPhone 24 Red 1 TB\"\r\n    },\r\n    \"sku\": \"iphone-24-red-1tb\",\r\n    \"quantity\": 100,\r\n    \"barcode\": \"10000\",\r\n    \"price\": {\r\n        \"amount\": 4000,\r\n        \"currencyCode\": \"QAR\"\r\n    },\r\n    \"weight\": {\r\n        \"amount\": 1,\r\n        \"unit\": \"kg\"\r\n    },\r\n    \"dimensions\": {\r\n        \"width\": 1000,\r\n        \"height\": 1000,\r\n        \"length\": 1000,\r\n        \"unit\": \"in\"\r\n    },\r\n    \"optionValues\": [\r\n        \"16624414-447d-41d2-9224-e1e3efff8205\",\r\n        \"652cb2d4-3a4d-4343-82b2-55422a84cb47\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/15f027b7-ede7-4ccf-9ce9-7cf17ca32c95/variants",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"15f027b7-ede7-4ccf-9ce9-7cf17ca32c95",
+										"variants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Variants",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/660e5d31-24e8-42e2-b8d7-1c45118ef29a/variants",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"660e5d31-24e8-42e2-b8d7-1c45118ef29a",
+										"variants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Variant",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/60acc64b-d2a8-4826-8a0d-8403d45bc1a3/variants/ea48506a-0f77-47cd-8e08-1e868623490e",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"60acc64b-d2a8-4826-8a0d-8403d45bc1a3",
+										"variants",
+										"ea48506a-0f77-47cd-8e08-1e868623490e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Variant",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": {\r\n        \"en\": \"A new laptop (in english)\",\r\n        \"ar\": \"A new laptop (in arabic)\"\r\n    },\r\n    \"sku\": \"dell-xps-2026\",\r\n    \"barcode\": \"1212321\",\r\n    \"price\": {\r\n        \"amount\": 1000,\r\n        \"currencyCode\": \"QAR\"\r\n    },\r\n    \"weight\": {\r\n        \"amount\": 1,\r\n        \"unit\": \"KILOGRAMS\"\r\n    },\r\n    \"dimensions\": {\r\n        \"width\": 1000,\r\n        \"height\": 1000,\r\n        \"length\": 1000\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/6cfd4dec-10a3-47e6-a2be-96df08cee2ac/variants/f1f6fb3a-f1d1-43b3-95b6-e213a020ca08",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"6cfd4dec-10a3-47e6-a2be-96df08cee2ac",
+										"variants",
+										"f1f6fb3a-f1d1-43b3-95b6-e213a020ca08"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product Variant",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": {\r\n        \"en\": \"A new laptop (in english)\",\r\n        \"ar\": \"A new laptop (in arabic)\"\r\n    },\r\n    \"sku\": \"dell-xps-2026\",\r\n    \"barcode\": \"1212321\",\r\n    \"price\": {\r\n        \"amount\": 1000,\r\n        \"currencyCode\": \"QAR\"\r\n    },\r\n    \"weight\": {\r\n        \"amount\": 1,\r\n        \"unit\": \"KILOGRAMS\"\r\n    },\r\n    \"dimensions\": {\r\n        \"width\": 1000,\r\n        \"height\": 1000,\r\n        \"length\": 1000\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/60acc64b-d2a8-4826-8a0d-8403d45bc1a3/variants/1f78a6e9-b4b6-4c12-b6b0-2f5caf78b29d",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"60acc64b-d2a8-4826-8a0d-8403d45bc1a3",
+										"variants",
+										"1f78a6e9-b4b6-4c12-b6b0-2f5caf78b29d"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product Variant Images",
+					"item": [
+						{
+							"name": "Upload Variant Images",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Gloria/Pictures/Test/m_Direct_Media____YWCMXRBDU8.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/15f027b7-ede7-4ccf-9ce9-7cf17ca32c95/variants/28a9db5c-1fb1-4acb-8193-e44514fb0952/images",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"15f027b7-ede7-4ccf-9ce9-7cf17ca32c95",
+										"variants",
+										"28a9db5c-1fb1-4acb-8193-e44514fb0952",
+										"images"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Variant Images",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Gloria/Pictures/Test/m_Direct_Media____YWCMXRBDU8.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/15f027b7-ede7-4ccf-9ce9-7cf17ca32c95/variants/28a9db5c-1fb1-4acb-8193-e44514fb0952/images",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"15f027b7-ede7-4ccf-9ce9-7cf17ca32c95",
+										"variants",
+										"28a9db5c-1fb1-4acb-8193-e44514fb0952",
+										"images"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Variant Image",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Gloria/Pictures/Test/m_Direct_Media____YWCMXRBDU8.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/15f027b7-ede7-4ccf-9ce9-7cf17ca32c95/variants/28a9db5c-1fb1-4acb-8193-e44514fb0952/images/c9066b08-aa75-4947-8c21-a9aa7d1d77d1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"15f027b7-ede7-4ccf-9ce9-7cf17ca32c95",
+										"variants",
+										"28a9db5c-1fb1-4acb-8193-e44514fb0952",
+										"images",
+										"c9066b08-aa75-4947-8c21-a9aa7d1d77d1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Variant Image",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"alt\": \"iPhone Photo\",\r\n    \"position\": 0,\r\n    \"isFeatured\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/15f027b7-ede7-4ccf-9ce9-7cf17ca32c95/variants/28a9db5c-1fb1-4acb-8193-e44514fb0952/images/c9066b08-aa75-4947-8c21-a9aa7d1d77d1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"15f027b7-ede7-4ccf-9ce9-7cf17ca32c95",
+										"variants",
+										"28a9db5c-1fb1-4acb-8193-e44514fb0952",
+										"images",
+										"c9066b08-aa75-4947-8c21-a9aa7d1d77d1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Variant Image",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"alt\": \"iPhone Photo\",\r\n    \"position\": 0,\r\n    \"isFeatured\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/15f027b7-ede7-4ccf-9ce9-7cf17ca32c95/variants/28a9db5c-1fb1-4acb-8193-e44514fb0952/images/150447ce-aab2-420a-a0bf-29521e189673",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"15f027b7-ede7-4ccf-9ce9-7cf17ca32c95",
+										"variants",
+										"28a9db5c-1fb1-4acb-8193-e44514fb0952",
+										"images",
+										"150447ce-aab2-420a-a0bf-29521e189673"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product Reviews",
+					"item": [
+						{
+							"name": "Create Product Review",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"rating\": 1.0,\r\n    \"comment\": \"This was very bad\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/660e5d31-24e8-42e2-b8d7-1c45118ef29a/reviews",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"660e5d31-24e8-42e2-b8d7-1c45118ef29a",
+										"reviews"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Product Review Image",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Gloria/Pictures/Test/m_Direct_Media____YWCMXRBDU8.jpg"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/660e5d31-24e8-42e2-b8d7-1c45118ef29a/reviews/7887b00a-b74a-4621-8e8b-0e5233643b4f/images",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"660e5d31-24e8-42e2-b8d7-1c45118ef29a",
+										"reviews",
+										"7887b00a-b74a-4621-8e8b-0e5233643b4f",
+										"images"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Reviews",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/660e5d31-24e8-42e2-b8d7-1c45118ef29a/reviews",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"660e5d31-24e8-42e2-b8d7-1c45118ef29a",
+										"reviews"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Product Review",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/660e5d31-24e8-42e2-b8d7-1c45118ef29a/reviews/7887b00a-b74a-4621-8e8b-0e5233643b4f",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"660e5d31-24e8-42e2-b8d7-1c45118ef29a",
+										"reviews",
+										"7887b00a-b74a-4621-8e8b-0e5233643b4f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product Review",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"rating\": 1.0,\r\n    \"comment\": \"This was very very bad\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/products/660e5d31-24e8-42e2-b8d7-1c45118ef29a/reviews/7887b00a-b74a-4621-8e8b-0e5233643b4f",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"660e5d31-24e8-42e2-b8d7-1c45118ef29a",
+										"reviews",
+										"7887b00a-b74a-4621-8e8b-0e5233643b4f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product Review",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/products/660e5d31-24e8-42e2-b8d7-1c45118ef29a/reviews/5f8f0f4b-3001-46af-9ec8-98f5590d0e76",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"products",
+										"660e5d31-24e8-42e2-b8d7-1c45118ef29a",
+										"reviews",
+										"5f8f0f4b-3001-46af-9ec8-98f5590d0e76"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3OGYzZWNlOC1hMDVmLTQzNmItYjgyYy1mNzc5ZWYxZTQzMDMiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI2YzkwZDhlZi03ZjlmLTRkY2ItOGRiMy05NzY5ZmE3NzFhZTciLCJpYXQiOjE3NzYzMjIwNzEsImV4cCI6MTc3NjQwODQ3MSwiaXNzIjoiQ2FtaW9uIn0.OgdmrZQJf3aoGTiiFyZBqaLIlGCbpBegTZzksV7C_fyettVcIjtYVuyXaS0UcorqMqVjX6Y9gGeS7HSdj3206VSBQl_qmLbU9UtEJgTAkh5wJuLsNdbm4F55QYrk8lwHYULOBWnFaBCqhL4ALM1bhFqYesfD81KyIp4v_xX_8qqBuRy43M3JLTCPygP0-F--ncQtsyZVZGKabA2FsEXBjlNKbJ31Vhz4ywi9LacxAUhAcYEkjZoSpB5_x_msyqeJFOWrC9BvqUAXv5WYmjESCivBMSihM6wy2hk3c7rFxZlMh6ma8ZlFJNcI-Y237Y6s6SeCePenIV4DYVS4wEo_sw",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3OGYzZWNlOC1hMDVmLTQzNmItYjgyYy1mNzc5ZWYxZTQzMDMiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI2YzkwZDhlZi03ZjlmLTRkY2ItOGRiMy05NzY5ZmE3NzFhZTciLCJpYXQiOjE3NzYzMjIwNzEsImV4cCI6MTc3NjQwODQ3MSwiaXNzIjoiQ2FtaW9uIn0.OgdmrZQJf3aoGTiiFyZBqaLIlGCbpBegTZzksV7C_fyettVcIjtYVuyXaS0UcorqMqVjX6Y9gGeS7HSdj3206VSBQl_qmLbU9UtEJgTAkh5wJuLsNdbm4F55QYrk8lwHYULOBWnFaBCqhL4ALM1bhFqYesfD81KyIp4v_xX_8qqBuRy43M3JLTCPygP0-F--ncQtsyZVZGKabA2FsEXBjlNKbJ31Vhz4ywi9LacxAUhAcYEkjZoSpB5_x_msyqeJFOWrC9BvqUAXv5WYmjESCivBMSihM6wy2hk3c7rFxZlMh6ma8ZlFJNcI-Y237Y6s6SeCePenIV4DYVS4wEo_sw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Story",
+			"item": [
+				{
+					"name": "Stories",
+					"item": [
+						{
+							"name": "Create Story",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"caption\": {\r\n        \"en\": \"Upcoming Products (English)\",\r\n        \"ar\": \"Upcoming Products (Arabic)\"\r\n    },\r\n    \"isHighlighted\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/stories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"stories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Stories",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/stories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"stories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Story",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/stories/6ff3643d-02fd-4757-abde-93d99daa57ee",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"stories",
+										"6ff3643d-02fd-4757-abde-93d99daa57ee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Story",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"caption\": {\r\n        \"en\": \"2025 (English)\",\r\n        \"ar\": \"2025 (Arabic)\"\r\n    },\r\n    \"isHighlighted\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/stories/6ff3643d-02fd-4757-abde-93d99daa57ee",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"stories",
+										"6ff3643d-02fd-4757-abde-93d99daa57ee"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Story",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"caption\": \"2025\",\r\n    \"isHighlighted\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/stories/726993a3-8220-48a1-9615-11d6d86e89b4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"stories",
+										"726993a3-8220-48a1-9615-11d6d86e89b4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Frames",
+					"item": [
+						{
+							"name": "Create Frame",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Gloria/Pictures/Test/m_Direct_Media____YWCMXRBDU8.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/stories/6ff3643d-02fd-4757-abde-93d99daa57ee/frames",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"stories",
+										"6ff3643d-02fd-4757-abde-93d99daa57ee",
+										"frames"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Frames",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/stories/6ff3643d-02fd-4757-abde-93d99daa57ee/frames",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"stories",
+										"6ff3643d-02fd-4757-abde-93d99daa57ee",
+										"frames"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Frame",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/stories/36118ca0-e96d-438c-b5fc-e0a6d9ede08b/frames/3820665b-57c2-4446-9b25-dfc15257399a",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"stories",
+										"36118ca0-e96d-438c-b5fc-e0a6d9ede08b",
+										"frames",
+										"3820665b-57c2-4446-9b25-dfc15257399a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Frame",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"duration\": 10,\r\n    \"order\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/stories/36118ca0-e96d-438c-b5fc-e0a6d9ede08b/frames/994fb552-56fc-4416-b514-f520bd052d57",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"stories",
+										"36118ca0-e96d-438c-b5fc-e0a6d9ede08b",
+										"frames",
+										"994fb552-56fc-4416-b514-f520bd052d57"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Frame",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/stories/36118ca0-e96d-438c-b5fc-e0a6d9ede08b/frames/b293fdfc-b4fd-4a74-acd9-bdcf54324d5a",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"stories",
+										"36118ca0-e96d-438c-b5fc-e0a6d9ede08b",
+										"frames",
+										"b293fdfc-b4fd-4a74-acd9-bdcf54324d5a"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1NDc4MzVmZi1lMDU0LTRjZGYtOTg1Zi01M2YyNTk3YzcyNTYiLCJ0eXBlIjoidXNlciIsInN1YiI6IjE2YTZiOTAzLWQ4ZGEtNDY2NC1iMDExLWEyN2MxOWNhY2U1YyIsImlhdCI6MTc3NTQ1OTUxNiwiZXhwIjoxNzc1NDYyMTA4LCJpc3MiOiJDYW1pb24ifQ.fU-fadHztDftjnfa_i08ezScLUIOUbhbk1HOtGg9-H8UbwErux8bVfkNTPHTdOrasFa3mZ4tQE1BvZ3V8L_f0NXG-z_FZYCjFUousS4kFv6ZOz29kp8xSi73Q9dz7kXKNl0_rAQOXUJlk5YEiE1u6y8A6zVwKdVlTsfotOlj3YHEW8yuJInL6M7XBJXDpFBBaokjsFhid4dtWQZiTqZzI5acy-7hM2l-ddqMGTq6QItvXlnVgk4qx6aIizKMH92YRPNoWXM6RSmvXpf9pHxvWScY77BCay_U8FC_Kj3NbSgbYlJZExMXaEEWeSgbnycbrYNwR4Xu8hiBiZJ_eop41Q",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Banner",
+			"item": [
+				{
+					"name": "Create Banner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Gloria/Pictures/Test/m_Freerangestock-Alex_Halay-112.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/banners",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"banners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Banners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/banners",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"banners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Banner",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/banners/2d051593-91d1-41bb-b955-35211715599f",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"banners",
+								"2d051593-91d1-41bb-b955-35211715599f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Banner",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": {\r\n        \"en\": \"New Product (English)\",\r\n        \"ar\": \"New Product (Arabic)\"\r\n    },\r\n    \"linkUrl\": \"New Products\",\r\n    \"isActive\": true,\r\n    \"placement\": \"homepage\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/v1/banners/065ebf39-a638-4bc1-aec0-93fb4286a652",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"banners",
+								"065ebf39-a638-4bc1-aec0-93fb4286a652"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Banner",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/v1/banners/e3815876-1782-4f5d-8c81-68aad85fc561",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"v1",
+								"banners",
+								"e3815876-1782-4f5d-8c81-68aad85fc561"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2Y2QzMzhmMS0wNTE5LTQxZjQtYjg1My1hNWViZThjY2Y5ZGQiLCJ0eXBlIjoidXNlciIsInN1YiI6IjE2YTZiOTAzLWQ4ZGEtNDY2NC1iMDExLWEyN2MxOWNhY2U1YyIsImlhdCI6MTc3NTQ2MTQ3OSwiZXhwIjoxNzc1NDY0MDcxLCJpc3MiOiJDYW1pb24ifQ.bX8YpvQ2Q287kqVcWDmkQGF7anPYfG7Rc64HkLGTIQnyJb6ts17I15Ua9GwwYX_qVwB8J_9eDcggXB30BlbDzJLEkc6lVmsqzWmPcUuVsKpNFFoEW6tYOdl8gochw0SVYOMgmzDnTVZkIZ7ttSAtzrbDTIWQMfCvJ8SH4zxu0s3jfGdBPwR_MeyS2lk51D3TCVrfhl0FQq-DFp5cF3Zf-MVKKAEmlzFgtrn_Nfn3afGeq6Pm0V51qzUo_a9cGwA6yxr7a-6RBnZEW2VgNqnQmhY2CpvcWhcJx2T3ROg7c4qQnwe39DAsk7PFe-0m0-YEaELwBlzxRxJRseMJ2MuYhA",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "GraphQL",
+			"item": [
+				{
+					"name": "Get Current Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetCurrentCustomer {\r\n  getCurrentCustomer {\r\n    uuid\r\n    fullName\r\n    emailAddress\r\n    phoneNumber\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Customer Addresses",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetCustomerAddresses($pageNumber: Int, $itemsPerPage: Int) {\r\n  getCustomerAddresses(pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    fullName\r\n    phoneNumber\r\n    streetAddress\r\n    apartment\r\n    zipCode\r\n    city\r\n    state\r\n    country\r\n    isDefault\r\n  }\r\n}",
+								"variables": "{\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 10\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Banners",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetBanners($language: String, $pageNumber: Int, $itemsPerPage: Int) {\r\n  getBanners(pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    title(language: $language)\r\n    imageUrl\r\n    linkUrl\r\n    placement\r\n    isActive\r\n  }\r\n}",
+								"variables": "{\r\n    \"language\": \"en\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetStories($language: String, $pageNumber: Int, $itemsPerPage: Int) {\r\n  getStories(pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    caption(language: $language)\r\n    isHighlighted\r\n    frames {\r\n        uuid\r\n        mediaType\r\n        mediaUrl\r\n        thumbnailUrl\r\n        duration\r\n        order\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"language\": \"en\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetCategories($language: String, $pageNumber: Int, $itemsPerPage: Int) {\r\n  getCategories(pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    name(language: $language)\r\n    thumbnailUrl\r\n    children {\r\n      uuid\r\n      slug\r\n      name(language: $language)\r\n      thumbnailUrl\r\n      children {\r\n        uuid\r\n        slug\r\n        name(language: $language)\r\n        thumbnailUrl\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"language\": \"en\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Products (Best Match)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query SearchProducts($query: String!, $language: String, $currency: String!, $sort: String, $pageNumber: Int, $itemsPerPage: Int) {\r\n  searchProducts(query: $query, language: $language, currency: $currency, sort: $sort, pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n        unit\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"query\": \"17\",\r\n    \"language\":\"en\",\r\n    \"currency\": \"qar\",\r\n    \"sort\": \"best-match\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Products (Price: Low-to-high)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query SearchProducts($query: String!, $language: String!, $currency: String!, $sort: String, $pageNumber: Int, $itemsPerPage: Int) {\r\n  searchProducts(query: $query, language: $language, currency: $currency, sort: $sort, pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n        unit\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"query\": \"25\",\r\n    \"language\": \"en\",\r\n    \"currency\": \"qar\",\r\n    \"sort\": \"price:low-to-high\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Products (Price: High-to-low)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query SearchProducts($query: String!, $language: String, $currency: String!, $sort: String, $pageNumber: Int, $itemsPerPage: Int) {\r\n  searchProducts(query: $query, language: $language, currency: $currency, sort: $sort, pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n        unit\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"query\": \"25\",\r\n    \"language\":\"en\",\r\n    \"currency\": \"qar\",\r\n    \"sort\": \"price:high-to-low\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recommended Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetRecommendedProducts($slug: String!, $language: String, $currency: String!, $pageNumber: Int, $itemsPerPage: Int) {\r\n  getRecommendedProducts(slug: $slug, language: $language, currency: $currency, pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n        unit\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"slug\": \"iphone-16\",\r\n    \"language\":\"en\",\r\n    \"currency\": \"qar\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Featured Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetFeaturedProducts($language: String, $currency: String!, $pageNumber: Int, $itemsPerPage: Int) {\r\n  getFeaturedProducts(language: $language, currency: $currency, pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n        unit\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"language\":\"en\",\r\n    \"currency\": \"qar\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Popular Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetPopularProducts($language: String, $currency: String!, $pageNumber: Int, $itemsPerPage: Int) {\r\n  getPopularProducts(language: $language, currency: $currency, pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n        unit\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"language\":\"en\",\r\n    \"currency\": \"qar\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Related Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetRelatedProducts($slug: String!, $language: String, $currency: String!, $pageNumber: Int, $itemsPerPage: Int) {\r\n  getRelatedProducts(slug: $slug, language: $language, currency: $currency, pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n        unit\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"slug\": \"iphone-16\",\r\n    \"language\":\"en\",\r\n    \"currency\": \"qar\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recently Viewed Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetRecentlyViewedProducts($language: String, $currency: String!, $pageNumber: Int, $itemsPerPage: Int) {\r\n  getRecentlyViewedProducts(language: $language, currency: $currency, pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n        unit\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"language\":\"en\",\r\n    \"currency\": \"qar\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetProducts($language: String, $currency: String, $sort: String, $pageNumber: Int, $itemsPerPage: Int) {\r\n  getProducts(language: $language, currency: $currency, sort: $sort, pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"language\": \"en\",\r\n    \"currency\": \"qar\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products By Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetProductsByCategory($slug: String!, $language: String, $currency: String, $sort: String, $pageNumber: Int, $itemsPerPage: Int) {\r\n  getProductsByCategory(slug: $slug, language: $language, currency: $currency, sort: $sort, pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"slug\": \"iphones\",\r\n    \"language\": \"en\",\r\n    \"currency\": \"qar\",\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetProduct($slug: String, $language: String, $currency: String) {\r\n  getProduct(slug: $slug, language: $language, currency: $currency) {\r\n    uuid\r\n    slug\r\n    title(language: $language)\r\n    brief(language: $language)\r\n    description(language: $language)\r\n    descriptionHtml(language: $language)\r\n    status\r\n    options {\r\n      uuid\r\n      name(language: $language)\r\n      position\r\n      values {\r\n        uuid\r\n        value(language: $language)\r\n        position\r\n      }\r\n    }\r\n    variants {\r\n      uuid\r\n      title(language: $language)\r\n      sku\r\n      barcode\r\n      price {\r\n        amount\r\n        currencyCode\r\n      }\r\n      weight {\r\n        amount\r\n        unit\r\n      }\r\n      dimensions {\r\n        width\r\n        height\r\n        length\r\n        unit\r\n      }\r\n      optionValues {\r\n        optionValue {\r\n          uuid\r\n        }\r\n      }\r\n      images {\r\n          uuid\r\n          imageUrl\r\n          thumbnailUrl\r\n          alt\r\n          isFeatured\r\n          position\r\n      }\r\n    }\r\n    reviews {\r\n        uuid\r\n        rating\r\n        comment\r\n        customer {\r\n            uuid\r\n            fullName\r\n        }\r\n        images {\r\n            uuid\r\n            thumbnailUrl\r\n            imageUrl\r\n        }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n    \"slug\": \"iphone-17\",\r\n    \"language\": \"en\",\r\n    \"currency\": \"qar\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Affiliate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetCurrentAffiliate {\r\n    getCurrentAffiliate {\r\n        uuid\r\n        fullName\r\n        gender\r\n        nationality\r\n        bio\r\n        type\r\n        status\r\n        status\r\n        totalCommission {\r\n            amount\r\n            currencyCode\r\n        }\r\n        totalPaid {\r\n            amount\r\n            currencyCode\r\n        }\r\n        remainingBalance {\r\n            amount\r\n            currencyCode\r\n        }\r\n        couponsCreated {\r\n            amount\r\n            currencyCode\r\n        }\r\n        couponsUsed\r\n        trendingCoupon {\r\n            uuid\r\n        }\r\n        topProduct {\r\n            uuid\r\n        }\r\n        wallet {\r\n            uuid\r\n            amount {\r\n                amount\r\n                currencyCode\r\n            }\r\n        }\r\n        createdAt\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Affiliate Wallet Transactions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetCurrentAffiliateWalletTransactions($pageNumber: Int, $itemsPerPage: Int) {\r\n    getCurrentAffiliateWalletTransactions(pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n        uuid\r\n        amount {\r\n            amount\r\n            currencyCode\r\n        }\r\n        type\r\n        description\r\n        createdAt\r\n    }\r\n}",
+								"variables": "{\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Affiliate Bank Accounts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetCurrentAffiliateBankAccounts($pageNumber: Int, $itemsPerPage: Int) {\r\n    getCurrentAffiliateBankAccounts(pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n        uuid\r\n        bankName\r\n        accountHolderName\r\n        accountNumber\r\n        iban\r\n        swiftCode\r\n        isDefault\r\n    }\r\n}",
+								"variables": "{\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Affiliate Coupons",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetCurrentAffiliateCoupons($pageNumber: Int, $itemsPerPage: Int) {\r\n    getCurrentAffiliateCoupons(pageNumber: $pageNumber, itemsPerPage: $itemsPerPage) {\r\n        uuid\r\n        code\r\n        discountPercentage\r\n        ordersCount\r\n        expiresAt\r\n        createdAt\r\n    }\r\n}",
+								"variables": "{\r\n    \"pageNumber\": 1,\r\n    \"itemsPerPage\": 100\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3OGYzZWNlOC1hMDVmLTQzNmItYjgyYy1mNzc5ZWYxZTQzMDMiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI2YzkwZDhlZi03ZjlmLTRkY2ItOGRiMy05NzY5ZmE3NzFhZTciLCJpYXQiOjE3NzYzMjIwNzEsImV4cCI6MTc3NjQwODQ3MSwiaXNzIjoiQ2FtaW9uIn0.OgdmrZQJf3aoGTiiFyZBqaLIlGCbpBegTZzksV7C_fyettVcIjtYVuyXaS0UcorqMqVjX6Y9gGeS7HSdj3206VSBQl_qmLbU9UtEJgTAkh5wJuLsNdbm4F55QYrk8lwHYULOBWnFaBCqhL4ALM1bhFqYesfD81KyIp4v_xX_8qqBuRy43M3JLTCPygP0-F--ncQtsyZVZGKabA2FsEXBjlNKbJ31Vhz4ywi9LacxAUhAcYEkjZoSpB5_x_msyqeJFOWrC9BvqUAXv5WYmjESCivBMSihM6wy2hk3c7rFxZlMh6ma8ZlFJNcI-Y237Y6s6SeCePenIV4DYVS4wEo_sw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Referral",
+			"item": [
+				{
+					"name": "Affliliates (Customer)",
+					"item": [
+						{
+							"name": "Create an affiliate",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"James\",\r\n    \"gender\": \"Male\",\r\n    \"nationality\": \"Qatari\",\r\n    \"bio\": \"I am not a Qatari\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/affiliates/affiliate",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"affiliates",
+										"affiliate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create an influencer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"Amin Ullah\",\r\n    \"gender\": \"Male\",\r\n    \"nationality\": \"Qatari\",\r\n    \"bio\": \"I am not a Qatari\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/affiliates/influencer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"affiliates",
+										"influencer"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1N2YxNTgzMy1iNmQ3LTRmMzQtYjdkZS03NzFkMTc0NjQ3OWMiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI2YzkwZDhlZi03ZjlmLTRkY2ItOGRiMy05NzY5ZmE3NzFhZTciLCJpYXQiOjE3NzYyNDY1NTksImV4cCI6MTc3NjMzMjk1OSwiaXNzIjoiQ2FtaW9uIn0.A1PoX8k2gzz1BU9SDk_cVfrerB02HJ8S-M8miTlk98pt7_t_aQUwG8VkOWsDTSMlyRDZSNch462U16USZ8V2c_8L0BGKbJWrHv58uaTD_uFI-20BLBIPSL1W7CcuY4-r1tlZ4w7CvX8aJkylG8z6L0CkRGghR1eJh4jrjjp85qw2Dp1KORae0tRVWQ739k7FXhaD6Cx_gY3vcRPLNCZwLQpDJzIrCqYt35VU-VYz8yRmFuN87_mKOXHq-2G1oSULm0Jb1fC8-4K3BOF6F2k_BgPn-iY0xHT0C7W7HLiwpgQufspHfTSdU6aV6QaM75Sg4XnD_kiYDQqbIibGvEesrg",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Affiliates (User)",
+					"item": [
+						{
+							"name": "Get Affiliates",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/affiliates",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"affiliates"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Affiliates By Type",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/affiliates?filters={\"type\":\"affiliate\"}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"affiliates"
+									],
+									"query": [
+										{
+											"key": "filters",
+											"value": "{\"type\":\"affiliate\"}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Affliliate",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/affiliates/650c2dab-3347-4223-95be-ed322f915c53",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"affiliates",
+										"650c2dab-3347-4223-95be-ed322f915c53"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Affiliate",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"Amin Ullah\",\r\n    \"gender\": \"Male\",\r\n    \"nationality\": \"Saudi\",\r\n    \"bio\": \"I am a Saudi\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/affiliates/650c2dab-3347-4223-95be-ed322f915c53",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"affiliates",
+										"650c2dab-3347-4223-95be-ed322f915c53"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Affiliate Status",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"rejected\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/affiliates/650c2dab-3347-4223-95be-ed322f915c53/status",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"affiliates",
+										"650c2dab-3347-4223-95be-ed322f915c53",
+										"status"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Affiliate Type",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"affiliate\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/affiliates/650c2dab-3347-4223-95be-ed322f915c53/type",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"affiliates",
+										"650c2dab-3347-4223-95be-ed322f915c53",
+										"type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Affiliate Type",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"affiliate\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/affiliates/06c8f6ec-507b-4af4-9749-fa8c77a8625b",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"affiliates",
+										"06c8f6ec-507b-4af4-9749-fa8c77a8625b"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3MDQ4NmM0Zi0wNjA3LTRiYTMtODMxMy1mZTZkZTA3MzliMWYiLCJ0eXBlIjoidXNlciIsInN1YiI6IjlkODRkYWEyLTA5NjYtNDBiYy1hNzIwLTEwODhiYmNhNWY1YiIsImlhdCI6MTc3NjIzNTg1MywiZXhwIjoxNzc2MzIyMjUzLCJpc3MiOiJDYW1pb24ifQ.DfdmFBbSX4G69pngs8NNJJPdkuqDe0yXpsIN7teZxnAGmOWSjj-VKTfiv5C5xMexcdl6E2kY7GaPNRVlB9FttUSjWYkUcDvof2SijlNZhGwMJXZInZV9v0aynqnnBp_vbWyxEq049kYtrUDA9wGchyZPO4yWGS-zlp10rkghmWQrF-ZtE0DyU76_Z__Wh9NyMWDdYnceVesUfzT4UYlJBY-tAEDeut8Ie_Dso4gYBDNjEsRjRggHmn8X5W3ZGcQ_E9MoXXsCypjbsS8jAOAD9p37fcDABUaUFronYlj7U0UwX9KENX9AfKg43upyGQoKAhfsJlVj_oXULiHm150FCw",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Transactions (User)",
+					"item": [
+						{
+							"name": "Create Transaction",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"amount\": 100,\r\n    \"currencyCode\": \"QAR\",\r\n    \"type\": \"credit\",\r\n    \"description\": \"Your commission for the month of July\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/wallets/c807c0a1-152d-4348-a7b1-b2320eabf9fc/transactions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"wallets",
+										"c807c0a1-152d-4348-a7b1-b2320eabf9fc",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Transactions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/wallets/c807c0a1-152d-4348-a7b1-b2320eabf9fc/transactions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"wallets",
+										"c807c0a1-152d-4348-a7b1-b2320eabf9fc",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Transaction",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/wallets/c807c0a1-152d-4348-a7b1-b2320eabf9fc/transactions/34995443-d0ff-4c94-b7ee-975850a85a00",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"wallets",
+										"c807c0a1-152d-4348-a7b1-b2320eabf9fc",
+										"transactions",
+										"34995443-d0ff-4c94-b7ee-975850a85a00"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reverse Transaction",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/wallets/c807c0a1-152d-4348-a7b1-b2320eabf9fc/transactions/804f8446-cb10-4997-bfac-d7e0487aba93/reverse",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"wallets",
+										"c807c0a1-152d-4348-a7b1-b2320eabf9fc",
+										"transactions",
+										"804f8446-cb10-4997-bfac-d7e0487aba93",
+										"reverse"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3MDQ4NmM0Zi0wNjA3LTRiYTMtODMxMy1mZTZkZTA3MzliMWYiLCJ0eXBlIjoidXNlciIsInN1YiI6IjlkODRkYWEyLTA5NjYtNDBiYy1hNzIwLTEwODhiYmNhNWY1YiIsImlhdCI6MTc3NjIzNTg1MywiZXhwIjoxNzc2MzIyMjUzLCJpc3MiOiJDYW1pb24ifQ.DfdmFBbSX4G69pngs8NNJJPdkuqDe0yXpsIN7teZxnAGmOWSjj-VKTfiv5C5xMexcdl6E2kY7GaPNRVlB9FttUSjWYkUcDvof2SijlNZhGwMJXZInZV9v0aynqnnBp_vbWyxEq049kYtrUDA9wGchyZPO4yWGS-zlp10rkghmWQrF-ZtE0DyU76_Z__Wh9NyMWDdYnceVesUfzT4UYlJBY-tAEDeut8Ie_Dso4gYBDNjEsRjRggHmn8X5W3ZGcQ_E9MoXXsCypjbsS8jAOAD9p37fcDABUaUFronYlj7U0UwX9KENX9AfKg43upyGQoKAhfsJlVj_oXULiHm150FCw",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Transactions (Customer)",
+					"item": [
+						{
+							"name": "Get Transactions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/wallets/c807c0a1-152d-4348-a7b1-b2320eabf9fc/transactions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"wallets",
+										"c807c0a1-152d-4348-a7b1-b2320eabf9fc",
+										"transactions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reverse Transaction",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/wallets/c807c0a1-152d-4348-a7b1-b2320eabf9fc/transactions/804f8446-cb10-4997-bfac-d7e0487aba93/reverse",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"wallets",
+										"c807c0a1-152d-4348-a7b1-b2320eabf9fc",
+										"transactions",
+										"804f8446-cb10-4997-bfac-d7e0487aba93",
+										"reverse"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyYmQ0YTAzZS0wNjdiLTQ0ZDMtYjRkMC00MGQyMWY5YjI4YTkiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI2YzkwZDhlZi03ZjlmLTRkY2ItOGRiMy05NzY5ZmE3NzFhZTciLCJpYXQiOjE3NzYyMzYwMzEsImV4cCI6MTc3NjMyMjQzMSwiaXNzIjoiQ2FtaW9uIn0.DjyIbkAU_N87irpUTqVlJ-FkmV7LyYpN9hvMVe2RYiX0jRlJL7KvxuU_fmtQHcxH1JtFRn0tTSlHwaG1S-ND2x0hmlIJ_CicgmcnkiDsKDUXeVD7nx7TNwKeUndY4geuRaa4hWqf7HfcqgUzYhX5w4zVwlPh7oFjyhFnSREbyiWLGqG3Mxn2JXY8t42ewoc2gzwTRw6iJYDW9_xZ5IjRQc99loy9-of0dVgpefKymf3kB1JZxzAt9DURUMS162dV8-RI8tA8orMqHXnzy4KvEZbSIdU65EzABcrUVbe8Ym6up5HLssR_GQTJCbUCq6iRZH9sM-JcRce9bCGQWp2h_Q",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Coupons (Customer)",
+					"item": [
+						{
+							"name": "Create Coupon",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"james10\",\r\n    \"discountPercentage\": 10,\r\n    \"expiresAt\": \"2026-12-31\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/coupons",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"coupons"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Coupons",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/coupons",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"coupons"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Coupon",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/coupons/32c60164-f17f-4a79-8388-2133e5a4f5e9",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"coupons",
+										"32c60164-f17f-4a79-8388-2133e5a4f5e9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Coupon",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"james12\",\r\n    \"discountPercentage\": 4,\r\n    \"expiresAt\": \"2026-12-31\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/coupons/32c60164-f17f-4a79-8388-2133e5a4f5e9",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"coupons",
+										"32c60164-f17f-4a79-8388-2133e5a4f5e9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Coupon",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"james50\",\r\n    \"discountPercentage\": 10.4,\r\n    \"expiresAt\": \"2026-12-31\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/coupons/a17cfd90-ee40-4684-8b9f-cf4bdc7dfece",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"coupons",
+										"a17cfd90-ee40-4684-8b9f-cf4bdc7dfece"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0ZDRkMGRhMi0zODQ2LTQ1MjMtYTNjZC05NDVlNzcyZTc0NjgiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI2YzkwZDhlZi03ZjlmLTRkY2ItOGRiMy05NzY5ZmE3NzFhZTciLCJpYXQiOjE3NzYyNDc2MDgsImV4cCI6MTc3NjMzNDAwOCwiaXNzIjoiQ2FtaW9uIn0.UwKFB14dspBnZ9RFV_Q5igryktqjJvPYFPCMQtkabjf18ZQSsc3WuywrIxxMX5cS6BekEG2pYO5c_HpDxqJAZlvLf3ZTKxHEHgEXAvX_KOYg6XtzfpFt6u_QB4ZqdN_a1YnZ5OzEOPyFWaJWa4QnrPaGs31WYpkDj-A-r3X1mI_wpGRlQ4lM_TryDQ755bm9TiRJj1F3LAaHlgKNHdImmWooJ4BLKm50e0FnPSH9LBRIvQoa_DXbC9FBRoHruRTfXpFXXfrJajqIGTP4hFnExcdY51FGRNNlL5fHCrqJ80_YL8-OmFaP8U1rrQFDjFJVcejrKzxAjymM13pRxtmVlw",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Coupons (User)",
+					"item": [
+						{
+							"name": "Get Coupons",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/coupons",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"coupons"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Coupon",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/coupons/32c60164-f17f-4a79-8388-2133e5a4f5e9",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"coupons",
+										"32c60164-f17f-4a79-8388-2133e5a4f5e9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Coupon",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/coupons/7f7e1b17-b182-40bb-9288-535582f7ffb1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"coupons",
+										"7f7e1b17-b182-40bb-9288-535582f7ffb1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5MWZiOGZiNS0zOGUzLTQ3ZmYtOGQwOS0xZWQ1Yzk3NGU3NmQiLCJ0eXBlIjoidXNlciIsInN1YiI6IjlkODRkYWEyLTA5NjYtNDBiYy1hNzIwLTEwODhiYmNhNWY1YiIsImlhdCI6MTc3NjI0OTQ0MSwiZXhwIjoxNzc2MzM1ODQxLCJpc3MiOiJDYW1pb24ifQ.fyqS30Ggah551bJ8DIWF3S-oRoHP1tFDi64y0xnP4ZbFB5slXw6Wi751abiW2JYtio4hwDJppSSv-CNZ8mh3cyGaiPe0aFU6SPWtsK5b6GMC-ypvXc-b81WCw1rxVWb-tTna6mnfFOqp-f9qEg9eIEudHoxxak7i4WuzebkUtUCAHYTxBZBPxs5X1ltAAXWZ0ggV4470Dtask3D4Pev1ooONG3TkOtpxrCgH_NYoSM9eIEceknwUFjwQnOqNGwtmc1Z_wo9STvadlUCYWrL9m-HDr4GlbiZcQDVQp065PVsA3ksM2UUyyAhoV44hurnJV7FtxXqbtQVDWiqG067IAA",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Bank Account (Customer)",
+					"item": [
+						{
+							"name": "Create Bank Account",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bankName\": \"Habib Bank Limited\",\r\n    \"accountHolderName\": \"James Cann\",\r\n    \"accountNumber\": \"1993 9899 3948 3948 12392\",\r\n    \"iban\": \"PKHBLL199398993948394812394\",\r\n    \"swiftCode\": \"PKHBLL1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/bank-accounts",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"bank-accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Bank Accounts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/bank-accounts",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"bank-accounts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Bank Account",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/bank-accounts/61b690d6-de05-497d-bef9-ca2be1b75476",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"bank-accounts",
+										"61b690d6-de05-497d-bef9-ca2be1b75476"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Bank Account",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bankName\": \"Habib Bank Limited\",\r\n    \"accountHolderName\": \"James Cann\",\r\n    \"accountNumber\": \"1993 9899 3948 3948 12394\",\r\n    \"iban\": \"PKHBLL199398993948394812394\",\r\n    \"swiftCode\": \"PKHBLL1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/bank-accounts/cc1f48c9-4d77-4422-be4d-d26e92c76cbc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"bank-accounts",
+										"cc1f48c9-4d77-4422-be4d-d26e92c76cbc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch Bank Account as Default",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"isDefault\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/v1/referral/bank-accounts/cc1f48c9-4d77-4422-be4d-d26e92c76cbc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"bank-accounts",
+										"cc1f48c9-4d77-4422-be4d-d26e92c76cbc"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0ZDRkMGRhMi0zODQ2LTQ1MjMtYTNjZC05NDVlNzcyZTc0NjgiLCJ0eXBlIjoiY3VzdG9tZXIiLCJzdWIiOiI2YzkwZDhlZi03ZjlmLTRkY2ItOGRiMy05NzY5ZmE3NzFhZTciLCJpYXQiOjE3NzYyNDc2MDgsImV4cCI6MTc3NjMzNDAwOCwiaXNzIjoiQ2FtaW9uIn0.UwKFB14dspBnZ9RFV_Q5igryktqjJvPYFPCMQtkabjf18ZQSsc3WuywrIxxMX5cS6BekEG2pYO5c_HpDxqJAZlvLf3ZTKxHEHgEXAvX_KOYg6XtzfpFt6u_QB4ZqdN_a1YnZ5OzEOPyFWaJWa4QnrPaGs31WYpkDj-A-r3X1mI_wpGRlQ4lM_TryDQ755bm9TiRJj1F3LAaHlgKNHdImmWooJ4BLKm50e0FnPSH9LBRIvQoa_DXbC9FBRoHruRTfXpFXXfrJajqIGTP4hFnExcdY51FGRNNlL5fHCrqJ80_YL8-OmFaP8U1rrQFDjFJVcejrKzxAjymM13pRxtmVlw",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Bank Account (User)",
+					"item": [
+						{
+							"name": "Get Bank Accounts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/v1/referral/bank-accounts",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"v1",
+										"referral",
+										"bank-accounts"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5MWZiOGZiNS0zOGUzLTQ3ZmYtOGQwOS0xZWQ1Yzk3NGU3NmQiLCJ0eXBlIjoidXNlciIsInN1YiI6IjlkODRkYWEyLTA5NjYtNDBiYy1hNzIwLTEwODhiYmNhNWY1YiIsImlhdCI6MTc3NjI0OTQ0MSwiZXhwIjoxNzc2MzM1ODQxLCJpc3MiOiJDYW1pb24ifQ.fyqS30Ggah551bJ8DIWF3S-oRoHP1tFDi64y0xnP4ZbFB5slXw6Wi751abiW2JYtio4hwDJppSSv-CNZ8mh3cyGaiPe0aFU6SPWtsK5b6GMC-ypvXc-b81WCw1rxVWb-tTna6mnfFOqp-f9qEg9eIEudHoxxak7i4WuzebkUtUCAHYTxBZBPxs5X1ltAAXWZ0ggV4470Dtask3D4Pev1ooONG3TkOtpxrCgH_NYoSM9eIEceknwUFjwQnOqNGwtmc1Z_wo9STvadlUCYWrL9m-HDr4GlbiZcQDVQp065PVsA3ksM2UUyyAhoV44hurnJV7FtxXqbtQVDWiqG067IAA",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "default"
+		}
+	]
+}

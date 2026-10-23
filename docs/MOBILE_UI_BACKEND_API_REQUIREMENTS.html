@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Camion Mobile App Backend API Requirements</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 12pt; line-height: 1.45; margin: 32px; }
+h1 { font-size: 24pt; margin: 18px 0 10px; }
+h2 { font-size: 18pt; margin: 16px 0 8px; }
+h3 { font-size: 14pt; margin: 14px 0 6px; }
+p { margin: 6px 0; }
+ul { margin: 6px 0 10px 20px; }
+li { margin: 3px 0; }
+pre { background: #f5f5f5; padding: 10px; border: 1px solid #ddd; white-space: pre-wrap; font-family: Menlo, monospace; font-size: 10pt; }
+code { font-family: Menlo, monospace; font-size: 10pt; }
+</style>
+</head>
+<body>
+<h1>Camion Mobile App</h1><h2>Backend API Requirements</h2><p></p><h3>Shareable Review Document</h3><p></p><p>This document is prepared for:</p><p></p><ul><li>backend team</li><li>project lead</li><li>product/design review</li></ul><p></p><p>Purpose of this document:</p><p></p><ul><li>list the backend APIs needed for the new mobile UI</li><li>make screen requirements clear before implementation</li><li>help evaluate scope before development starts</li><li>provide payload and expected response examples for each screen flow</li></ul><p></p><p>The mobile app should behave as if it is talking to one backend source.</p><p>Internally that backend can use multiple services, but for the app team this should feel like one complete API contract.</p><p></p><p>Internal services behind the backend:</p><p></p><ul><li>API Gateway: user, cart, checkout, wishlist, notifications, affiliate, utility</li><li>Buckydrop: products, categories, reviews, tracking</li><li>Stories service: sliders, stories</li><li>Chatbot service: chatbot sessions and messages</li></ul><p></p><h2>Review Notes</h2><p></p><ul><li>this document is written as a complete app contract for the new UI</li><li>some payload/response fields may still gain small extra fields during implementation</li><li>variation structures can have missing or changing variation types in some product cases, and those will be handled on the go during backend and app integration</li><li>`lang` and `currencyCode` should be respected across the complete app</li><li>if a screen is visually static in design, it is still listed where backend-controlled content is useful for long-term flexibility</li></ul><p></p><h2>What Needs Review</h2><p></p><p>The backend team and project lead should review:</p><p></p><ul><li>API coverage for every screen</li><li>response shape consistency</li><li>dynamic language support</li><li>dynamic currency support</li><li>review flow after completed orders</li><li>static design content that should come from backend</li><li>any missing business rules before implementation starts</li></ul><p></p><h2>Basic Rules</h2><p></p><h3>Common headers</h3><p></p><pre><code>Authorization: Bearer &lt;token&gt;      // only for logged-in APIs
+Content-Type: application/json
+</code></pre><p></p><h3>Common query params</h3><p></p><ul><li>`lang`: app language like `en`, `ar`</li><li>`currencyCode`: currency like `QAR`, `USD`</li><li>`page`: page number</li><li>`per_page`: items per page</li></ul><p></p><h3>Important rule for the whole app</h3><p></p><ul><li>`lang` must be accepted by all content APIs in the app</li><li>`currencyCode` must be accepted by all money-related APIs in the app</li><li>backend should not assume fixed language or fixed currency anywhere</li><li>all labels, titles, messages, policy content, help content, product content, affiliate content, and section names should be returned according to `lang`</li><li>all prices, totals, wallet amounts, order amounts, coupon calculations, shipping totals, and product prices should be returned according to `currencyCode`</li><li>for consistency, backend can accept both `lang` and `currencyCode` on all APIs, even if one of them is not used for a specific endpoint</li></ul><p></p><h3>Common success response style</h3><p></p><p>For a simple response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Done&quot;,
+  &quot;data&quot;: {}
+}
+</code></pre><p></p><p>For a list response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Done&quot;,
+  &quot;data&quot;: [],
+  &quot;meta&quot;: {
+    &quot;page&quot;: 1,
+    &quot;per_page&quot;: 20,
+    &quot;total&quot;: 100,
+    &quot;has_next&quot;: true
+  }
+}
+</code></pre><p></p><h2>Screen Wise API List</h2><p></p><h2>1. Login Screen</h2><p></p><h3>API: login</h3><p></p><p><code>POST /users/auth/login</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;email&quot;: &quot;john@example.com&quot;
+}
+</code></pre><p></p><p>or</p><p></p><pre><code>{
+  &quot;phone&quot;: &quot;+97450000000&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Verification code sent&quot;,
+  &quot;data&quot;: {
+    &quot;userId&quot;: &quot;usr_123&quot;,
+    &quot;email&quot;: &quot;john@example.com&quot;,
+    &quot;phone&quot;: &quot;+97450000000&quot;,
+    &quot;requiresVerification&quot;: true
+  }
+}
+</code></pre><p></p><h2>2. Register Screen</h2><p></p><h3>API: register</h3><p></p><p><code>POST /users/auth/register</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;fullName&quot;: &quot;John Doe&quot;,
+  &quot;email&quot;: &quot;john@example.com&quot;,
+  &quot;phone&quot;: &quot;+97450000000&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Verification code sent&quot;,
+  &quot;data&quot;: {
+    &quot;userId&quot;: &quot;usr_123&quot;,
+    &quot;email&quot;: &quot;john@example.com&quot;,
+    &quot;phone&quot;: &quot;+97450000000&quot;,
+    &quot;requiresVerification&quot;: true
+  }
+}
+</code></pre><p></p><h2>3. OTP Verification Screen</h2><p></p><h3>API: verify code</h3><p></p><p><code>POST /users/verify</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;email&quot;: &quot;john@example.com&quot;,
+  &quot;code&quot;: &quot;123456&quot;
+}
+</code></pre><p></p><p>or</p><p></p><pre><code>{
+  &quot;phone&quot;: &quot;+97450000000&quot;,
+  &quot;code&quot;: &quot;123456&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;User verified&quot;,
+  &quot;data&quot;: {
+    &quot;token&quot;: &quot;jwt-token&quot;,
+    &quot;user&quot;: {
+      &quot;id&quot;: &quot;usr_123&quot;,
+      &quot;fullName&quot;: &quot;John Doe&quot;,
+      &quot;email&quot;: &quot;john@example.com&quot;,
+      &quot;phone&quot;: &quot;+97450000000&quot;,
+      &quot;role&quot;: &quot;customer&quot;,
+      &quot;isActive&quot;: true
+    }
+  }
+}
+</code></pre><p></p><h2>4. Social Login</h2><p></p><h3>API: Google login</h3><p></p><p><code>POST /auth/mobile/google</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;idToken&quot;: &quot;google-id-token&quot;
+}
+</code></pre><p></p><h3>API: Facebook login</h3><p></p><p><code>POST /auth/mobile/facebook</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;accessToken&quot;: &quot;facebook-access-token&quot;
+}
+</code></pre><p></p><h3>API: Apple login</h3><p></p><p><code>POST /auth/mobile/apple</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;identityToken&quot;: &quot;apple-identity-token&quot;,
+  &quot;authorizationCode&quot;: &quot;optional-auth-code&quot;,
+  &quot;fullName&quot;: &quot;John Doe&quot;
+}
+</code></pre><p></p><p>Common response for social login:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Login successful&quot;,
+  &quot;data&quot;: {
+    &quot;token&quot;: &quot;jwt-token&quot;,
+    &quot;user&quot;: {
+      &quot;id&quot;: &quot;usr_123&quot;,
+      &quot;fullName&quot;: &quot;John Doe&quot;,
+      &quot;email&quot;: &quot;john@example.com&quot;,
+      &quot;phone&quot;: &quot;+97450000000&quot;,
+      &quot;role&quot;: &quot;customer&quot;,
+      &quot;isActive&quot;: true
+    },
+    &quot;isNewUser&quot;: false
+  }
+}
+</code></pre><p></p><h2>5. Address Screen</h2><p></p><h3>API: get my address</h3><p></p><p><code>GET /users/address/me?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Address fetched&quot;,
+  &quot;data&quot;: {
+    &quot;city&quot;: &quot;Doha&quot;,
+    &quot;email&quot;: &quot;john@example.com&quot;,
+    &quot;phone&quot;: &quot;+97450000000&quot;,
+    &quot;state&quot;: &quot;Doha&quot;,
+    &quot;country&quot;: &quot;QA&quot;,
+    &quot;postcode&quot;: &quot;00000&quot;,
+    &quot;address_1&quot;: &quot;Street 1&quot;,
+    &quot;address_2&quot;: &quot;Building 20&quot;,
+    &quot;last_name&quot;: &quot;Doe&quot;,
+    &quot;first_name&quot;: &quot;John&quot;,
+    &quot;shipping_option&quot;: {
+      &quot;method_id&quot;: &quot;flat_rate&quot;,
+      &quot;title&quot;: &quot;Standard Shipping&quot;,
+      &quot;cost&quot;: 25
+    },
+    &quot;shipping_address&quot;: {
+      &quot;city&quot;: &quot;Doha&quot;,
+      &quot;email&quot;: &quot;john@example.com&quot;,
+      &quot;phone&quot;: &quot;+97450000000&quot;,
+      &quot;state&quot;: &quot;Doha&quot;,
+      &quot;country&quot;: &quot;QA&quot;,
+      &quot;postcode&quot;: &quot;00000&quot;,
+      &quot;address_1&quot;: &quot;Street 1&quot;,
+      &quot;address_2&quot;: &quot;Building 20&quot;,
+      &quot;last_name&quot;: &quot;Doe&quot;,
+      &quot;first_name&quot;: &quot;John&quot;
+    }
+  }
+}
+</code></pre><p></p><h3>API: save address</h3><p></p><p><code>POST /users/address/update</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;first_name&quot;: &quot;John&quot;,
+  &quot;last_name&quot;: &quot;Doe&quot;,
+  &quot;email&quot;: &quot;john@example.com&quot;,
+  &quot;phone&quot;: &quot;+97450000000&quot;,
+  &quot;address_1&quot;: &quot;Street 1&quot;,
+  &quot;address_2&quot;: &quot;Building 20&quot;,
+  &quot;city&quot;: &quot;Doha&quot;,
+  &quot;state&quot;: &quot;Doha&quot;,
+  &quot;postcode&quot;: &quot;00000&quot;,
+  &quot;country&quot;: &quot;QA&quot;,
+  &quot;shipping_address&quot;: {
+    &quot;first_name&quot;: &quot;John&quot;,
+    &quot;last_name&quot;: &quot;Doe&quot;,
+    &quot;email&quot;: &quot;john@example.com&quot;,
+    &quot;phone&quot;: &quot;+97450000000&quot;,
+    &quot;address_1&quot;: &quot;Street 1&quot;,
+    &quot;address_2&quot;: &quot;Building 20&quot;,
+    &quot;city&quot;: &quot;Doha&quot;,
+    &quot;state&quot;: &quot;Doha&quot;,
+    &quot;postcode&quot;: &quot;00000&quot;,
+    &quot;country&quot;: &quot;QA&quot;
+  },
+  &quot;shipping_option&quot;: {
+    &quot;method_id&quot;: &quot;flat_rate&quot;,
+    &quot;title&quot;: &quot;Standard Shipping&quot;,
+    &quot;cost&quot;: &quot;25&quot;
+  }
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Address updated successfully&quot;,
+  &quot;data&quot;: {
+    &quot;saved&quot;: true
+  }
+}
+</code></pre><p></p><h3>API: countries list</h3><p></p><p><code>GET /utility/countries?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Countries fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;code&quot;: &quot;QA&quot;,
+      &quot;name&quot;: &quot;Qatar&quot;,
+      &quot;phoneCode&quot;: &quot;+974&quot;
+    }
+  ]
+}
+</code></pre><p></p><h3>API: states list</h3><p></p><p><code>GET /utility/countries/{countryCode}/states?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;States fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;code&quot;: &quot;DOHA&quot;,
+      &quot;name&quot;: &quot;Doha&quot;
+    }
+  ]
+}
+</code></pre><p></p><h3>API: cities list</h3><p></p><p><code>GET /utility/countries/{countryCode}/states/{stateCode}/cities?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Cities fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;code&quot;: &quot;DOHA_CITY&quot;,
+      &quot;name&quot;: &quot;Doha&quot;
+    }
+  ]
+}
+</code></pre><p></p><h2>6. Home Screen</h2><p></p><p>The Home screen in the new UI has multiple required blocks, not just one product list.</p><p>Backend should provide all of these blocks:</p><p></p><ul><li>stories</li><li>hero banners</li><li>categories</li><li>section tabs</li><li>`Popular Products`</li><li>`Top Sales`</li><li>`Recommended`</li><li>optional promo block like `Join Us`</li></ul><p></p><h3>Preferred API: full home feed</h3><p></p><p><code>GET /home?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Home feed fetched&quot;,
+  &quot;data&quot;: {
+    &quot;stories&quot;: [
+      {
+        &quot;id&quot;: &quot;story_1&quot;,
+        &quot;title&quot;: &quot;Spring Drop&quot;,
+        &quot;description&quot;: &quot;Latest arrivals&quot;,
+        &quot;mediaUrl&quot;: &quot;https://cdn.example.com/story-1.mp4&quot;,
+        &quot;mediaType&quot;: &quot;video&quot;,
+        &quot;duration&quot;: 15,
+        &quot;expiresAt&quot;: &quot;2026-03-26T00:00:00.000Z&quot;,
+        &quot;createdAt&quot;: &quot;2026-03-25T08:00:00.000Z&quot;,
+        &quot;isActive&quot;: true
+      }
+    ],
+    &quot;banners&quot;: [
+      {
+        &quot;id&quot;: 1,
+        &quot;imageUrl&quot;: &quot;https://cdn.example.com/slider-1.jpg&quot;,
+        &quot;title&quot;: &quot;Brands Week&quot;,
+        &quot;description&quot;: &quot;Shop top brands&quot;,
+        &quot;discount&quot;: &quot;Flat 50% Off&quot;,
+        &quot;action&quot;: {
+          &quot;type&quot;: &quot;collection&quot;,
+          &quot;value&quot;: &quot;top-sales&quot;
+        }
+      }
+    ],
+    &quot;categories&quot;: [
+      {
+        &quot;id&quot;: 10,
+        &quot;name&quot;: &quot;Shoes&quot;,
+        &quot;slug&quot;: &quot;shoes&quot;,
+        &quot;description&quot;: &quot;&quot;,
+        &quot;parent&quot;: 0,
+        &quot;count&quot;: 145,
+        &quot;review_count&quot;: 0,
+        &quot;permalink&quot;: &quot;https://example.com/category/shoes&quot;,
+        &quot;image&quot;: {
+          &quot;id&quot;: 2,
+          &quot;src&quot;: &quot;https://cdn.example.com/category-shoes.jpg&quot;,
+          &quot;thumbnail&quot;: &quot;https://cdn.example.com/category-shoes-thumb.jpg&quot;
+        }
+      }
+    ],
+    &quot;sectionTabs&quot;: [
+      {
+        &quot;id&quot;: &quot;all&quot;,
+        &quot;label&quot;: &quot;All&quot;
+      },
+      {
+        &quot;id&quot;: &quot;popular_products&quot;,
+        &quot;label&quot;: &quot;Popular Products&quot;
+      },
+      {
+        &quot;id&quot;: &quot;top_sales&quot;,
+        &quot;label&quot;: &quot;Top Sales&quot;
+      },
+      {
+        &quot;id&quot;: &quot;recommended&quot;,
+        &quot;label&quot;: &quot;Recommended&quot;
+      }
+    ],
+    &quot;sections&quot;: [
+      {
+        &quot;id&quot;: &quot;popular_products&quot;,
+        &quot;title&quot;: &quot;Popular Products&quot;,
+        &quot;layout&quot;: &quot;grid&quot;,
+        &quot;showMore&quot;: true,
+        &quot;items&quot;: [
+          {
+            &quot;id&quot;: 101,
+            &quot;name&quot;: &quot;Running Shoes&quot;,
+            &quot;slug&quot;: &quot;running-shoes&quot;,
+            &quot;short_description&quot;: &quot;Lightweight shoes&quot;,
+            &quot;description&quot;: &quot;&lt;p&gt;Full description&lt;/p&gt;&quot;,
+            &quot;on_sale&quot;: true,
+            &quot;price_html&quot;: &quot;&lt;span&gt;QAR 199&lt;/span&gt;&quot;,
+            &quot;average_rating&quot;: &quot;4.6&quot;,
+            &quot;review_count&quot;: 12,
+            &quot;images&quot;: [
+              {
+                &quot;id&quot;: 1,
+                &quot;src&quot;: &quot;https://cdn.example.com/p1.jpg&quot;,
+                &quot;thumbnail&quot;: &quot;https://cdn.example.com/p1-thumb.jpg&quot;,
+                &quot;name&quot;: &quot;Running Shoes&quot;,
+                &quot;alt&quot;: &quot;Running Shoes&quot;
+              }
+            ],
+            &quot;categories&quot;: [
+              {
+                &quot;id&quot;: 10,
+                &quot;name&quot;: &quot;Shoes&quot;,
+                &quot;slug&quot;: &quot;shoes&quot;
+              }
+            ],
+            &quot;brands&quot;: [
+              {
+                &quot;id&quot;: 4,
+                &quot;name&quot;: &quot;Nike&quot;,
+                &quot;slug&quot;: &quot;nike&quot;
+              }
+            ],
+            &quot;attributes&quot;: [
+              {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Size&quot;,
+                &quot;terms&quot;: [
+                  {
+                    &quot;id&quot;: 11,
+                    &quot;name&quot;: &quot;UK 8&quot;,
+                    &quot;slug&quot;: &quot;uk-8&quot;
+                  }
+                ]
+              }
+            ],
+            &quot;variations&quot;: [
+              {
+                &quot;attribute&quot;: &quot;Size&quot;,
+                &quot;value&quot;: &quot;UK 8&quot;
+              }
+            ],
+            &quot;has_options&quot;: true,
+            &quot;is_purchasable&quot;: true,
+            &quot;is_in_stock&quot;: true,
+            &quot;cart&quot;: false,
+            &quot;wishlist&quot;: true,
+            &quot;prices&quot;: {
+              &quot;currency_code&quot;: &quot;QAR&quot;,
+              &quot;currency_symbol&quot;: &quot;QAR&quot;,
+              &quot;price&quot;: &quot;199&quot;,
+              &quot;regular_price&quot;: &quot;249&quot;,
+              &quot;sale_price&quot;: &quot;199&quot;
+            }
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;top_sales&quot;,
+        &quot;title&quot;: &quot;Top Sales&quot;,
+        &quot;layout&quot;: &quot;grid&quot;,
+        &quot;showMore&quot;: true,
+        &quot;items&quot;: []
+      },
+      {
+        &quot;id&quot;: &quot;recommended&quot;,
+        &quot;title&quot;: &quot;Recommended&quot;,
+        &quot;layout&quot;: &quot;grid&quot;,
+        &quot;showMore&quot;: true,
+        &quot;items&quot;: []
+      }
+    ],
+    &quot;promoCards&quot;: [
+      {
+        &quot;id&quot;: &quot;join_us&quot;,
+        &quot;title&quot;: &quot;Join Our Team&quot;,
+        &quot;description&quot;: &quot;Become part of Camion and start earning with us.&quot;,
+        &quot;imageUrl&quot;: &quot;https://cdn.example.com/join-us-banner.jpg&quot;,
+        &quot;buttonText&quot;: &quot;Join Us&quot;,
+        &quot;action&quot;: {
+          &quot;type&quot;: &quot;route&quot;,
+          &quot;value&quot;: &quot;affiliateCheckScreen&quot;
+        }
+      }
+    ]
+  }
+}
+</code></pre><p></p><h3>Optional support APIs if backend keeps Home modular</h3><p></p><p>If backend still wants to keep Home in smaller APIs, these APIs are still required:</p><p></p><ul><li>`GET /sliders`</li><li>`GET /stories/active`</li><li>`GET /categories?lang=en&amp;currencyCode=QAR`</li><li>`GET /products?page=1&amp;per_page=20&amp;lang=en&amp;currencyCode=QAR`</li><li>`GET /products/sections/home?lang=en&amp;currencyCode=QAR`</li></ul><p></p><h3>API: home product sections</h3><p></p><p><code>GET /products/sections/home?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Home sections fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;popular_products&quot;,
+      &quot;title&quot;: &quot;Popular Products&quot;,
+      &quot;layout&quot;: &quot;grid&quot;,
+      &quot;showMore&quot;: true,
+      &quot;items&quot;: []
+    },
+    {
+      &quot;id&quot;: &quot;top_sales&quot;,
+      &quot;title&quot;: &quot;Top Sales&quot;,
+      &quot;layout&quot;: &quot;grid&quot;,
+      &quot;showMore&quot;: true,
+      &quot;items&quot;: []
+    },
+    {
+      &quot;id&quot;: &quot;recommended&quot;,
+      &quot;title&quot;: &quot;Recommended&quot;,
+      &quot;layout&quot;: &quot;grid&quot;,
+      &quot;showMore&quot;: true,
+      &quot;items&quot;: []
+    }
+  ]
+}
+</code></pre><p></p><h3>API: save FCM token</h3><p></p><p><code>POST /users/notifications/token?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;token&quot;: &quot;fcm_device_token&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Notification token saved&quot;,
+  &quot;data&quot;: {
+    &quot;saved&quot;: true
+  }
+}
+</code></pre><p></p><h2>7. Search Screen</h2><p></p><h3>API: search products</h3><p></p><p><code>GET /products?search=shoe&amp;page=1&amp;per_page=20&amp;lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><p>Use the same product list response as Home products.</p><p></p><h2>8. Filter Screen</h2><p></p><h3>API: filter options</h3><p></p><p><code>GET /products/filters?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Filter options fetched&quot;,
+  &quot;data&quot;: {
+    &quot;priceRange&quot;: {
+      &quot;min&quot;: 10,
+      &quot;max&quot;: 999
+    },
+    &quot;brands&quot;: [
+      { &quot;id&quot;: &quot;nike&quot;, &quot;label&quot;: &quot;Nike&quot;, &quot;count&quot;: 44 },
+      { &quot;id&quot;: &quot;adidas&quot;, &quot;label&quot;: &quot;Adidas&quot;, &quot;count&quot;: 31 }
+    ],
+    &quot;categories&quot;: [
+      { &quot;id&quot;: 11, &quot;label&quot;: &quot;Running&quot;, &quot;count&quot;: 32 }
+    ],
+    &quot;sizes&quot;: [
+      { &quot;id&quot;: &quot;uk-8&quot;, &quot;label&quot;: &quot;UK 8&quot;, &quot;count&quot;: 12 }
+    ],
+    &quot;colors&quot;: [
+      { &quot;id&quot;: &quot;#000000&quot;, &quot;label&quot;: &quot;Black&quot;, &quot;count&quot;: 19 }
+    ],
+    &quot;sortOptions&quot;: [
+      { &quot;id&quot;: &quot;popular&quot;, &quot;label&quot;: &quot;Popular&quot; },
+      { &quot;id&quot;: &quot;price_asc&quot;, &quot;label&quot;: &quot;Price low to high&quot; },
+      { &quot;id&quot;: &quot;price_desc&quot;, &quot;label&quot;: &quot;Price high to low&quot; }
+    ]
+  }
+}
+</code></pre><p></p><h3>API: filtered products</h3><p></p><p><code>GET /products?lang=en&amp;currencyCode=QAR&amp;category=shoes&amp;brand=nike&amp;size=uk-8&amp;min_price=50&amp;max_price=300&amp;sort=popular&amp;page=1&amp;per_page=20</code></p><p></p><p>Response:</p><p></p><p>Use the same product list response as Home products.</p><p></p><h2>9. Category Screen</h2><p></p><h3>API: sub categories</h3><p></p><p><code>GET /categories/{categoryId}?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Subcategories fetched&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: 10,
+    &quot;name&quot;: &quot;Shoes&quot;,
+    &quot;subcategories&quot;: [
+      {
+        &quot;id&quot;: 11,
+        &quot;name&quot;: &quot;Running&quot;,
+        &quot;slug&quot;: &quot;running&quot;,
+        &quot;description&quot;: &quot;&quot;,
+        &quot;parent&quot;: 10,
+        &quot;count&quot;: 32,
+        &quot;review_count&quot;: 0,
+        &quot;permalink&quot;: &quot;https://example.com/category/running&quot;,
+        &quot;image&quot;: {
+          &quot;id&quot;: 3,
+          &quot;src&quot;: &quot;https://cdn.example.com/running.jpg&quot;,
+          &quot;thumbnail&quot;: &quot;https://cdn.example.com/running-thumb.jpg&quot;
+        }
+      }
+    ]
+  }
+}
+</code></pre><p></p><h2>10. Products By Category Screen</h2><p></p><h3>API: products by category</h3><p></p><p><code>GET /products?category=shoes&amp;page=1&amp;per_page=20&amp;lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><p>Use the same product list response as Home products.</p><p></p><h2>11. Product Details Screen</h2><p></p><h3>API: product details</h3><p></p><p><code>GET /products/{productId}?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Product details fetched&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: 101,
+    &quot;name&quot;: &quot;Running Shoes&quot;,
+    &quot;slug&quot;: &quot;running-shoes&quot;,
+    &quot;short_description&quot;: &quot;Lightweight shoes&quot;,
+    &quot;description&quot;: &quot;&lt;p&gt;Full description&lt;/p&gt;&quot;,
+    &quot;on_sale&quot;: true,
+    &quot;price_html&quot;: &quot;&lt;span&gt;QAR 199&lt;/span&gt;&quot;,
+    &quot;average_rating&quot;: &quot;4.6&quot;,
+    &quot;review_count&quot;: 12,
+    &quot;images&quot;: [
+      {
+        &quot;id&quot;: 1,
+        &quot;src&quot;: &quot;https://cdn.example.com/p1.jpg&quot;,
+        &quot;thumbnail&quot;: &quot;https://cdn.example.com/p1-thumb.jpg&quot;,
+        &quot;name&quot;: &quot;Running Shoes&quot;,
+        &quot;alt&quot;: &quot;Running Shoes&quot;
+      }
+    ],
+    &quot;categories&quot;: [
+      {
+        &quot;id&quot;: 10,
+        &quot;name&quot;: &quot;Shoes&quot;,
+        &quot;slug&quot;: &quot;shoes&quot;
+      }
+    ],
+    &quot;brands&quot;: [
+      {
+        &quot;id&quot;: 4,
+        &quot;name&quot;: &quot;Nike&quot;,
+        &quot;slug&quot;: &quot;nike&quot;
+      }
+    ],
+    &quot;attributes&quot;: [
+      {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Size&quot;,
+        &quot;terms&quot;: [
+          {
+            &quot;id&quot;: 11,
+            &quot;name&quot;: &quot;UK 8&quot;,
+            &quot;slug&quot;: &quot;uk-8&quot;
+          }
+        ]
+      }
+    ],
+    &quot;variations&quot;: [
+      {
+        &quot;attribute&quot;: &quot;Size&quot;,
+        &quot;value&quot;: &quot;UK 8&quot;
+      }
+    ],
+    &quot;product_variations&quot;: [
+      {
+        &quot;id&quot;: 991,
+        &quot;attributes&quot;: [
+          {
+            &quot;name&quot;: &quot;Size&quot;,
+            &quot;value&quot;: &quot;UK 8&quot;
+          }
+        ],
+        &quot;price&quot;: &quot;199&quot;,
+        &quot;regular_price&quot;: &quot;249&quot;,
+        &quot;sale_price&quot;: &quot;199&quot;,
+        &quot;stock_status&quot;: &quot;instock&quot;
+      }
+    ],
+    &quot;has_options&quot;: true,
+    &quot;is_purchasable&quot;: true,
+    &quot;is_in_stock&quot;: true,
+    &quot;cart&quot;: false,
+    &quot;wishlist&quot;: true,
+    &quot;prices&quot;: {
+      &quot;currency_code&quot;: &quot;QAR&quot;,
+      &quot;currency_symbol&quot;: &quot;QAR&quot;,
+      &quot;price&quot;: &quot;199&quot;,
+      &quot;regular_price&quot;: &quot;249&quot;,
+      &quot;sale_price&quot;: &quot;199&quot;
+    }
+  }
+}
+</code></pre><p></p><h3>API: product reviews</h3><p></p><p><code>GET /products/reviews?product=101&amp;lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Reviews fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;date_created&quot;: &quot;2026-03-20T10:00:00&quot;,
+      &quot;formatted_date_created&quot;: &quot;March 20, 2026&quot;,
+      &quot;date_created_gmt&quot;: &quot;2026-03-20T07:00:00&quot;,
+      &quot;product_id&quot;: 101,
+      &quot;product_name&quot;: &quot;Running Shoes&quot;,
+      &quot;product_permalink&quot;: &quot;https://example.com/products/running-shoes&quot;,
+      &quot;product_image&quot;: {
+        &quot;id&quot;: 1,
+        &quot;src&quot;: &quot;https://cdn.example.com/p1.jpg&quot;,
+        &quot;thumbnail&quot;: &quot;https://cdn.example.com/p1-thumb.jpg&quot;,
+        &quot;srcset&quot;: &quot;&quot;,
+        &quot;sizes&quot;: &quot;&quot;,
+        &quot;name&quot;: &quot;Running Shoes&quot;,
+        &quot;alt&quot;: &quot;Running Shoes&quot;
+      },
+      &quot;reviewer&quot;: &quot;John Doe&quot;,
+      &quot;review&quot;: &quot;Very good quality&quot;,
+      &quot;rating&quot;: 5,
+      &quot;verified&quot;: true,
+      &quot;reviewer_avatar_urls&quot;: {
+        &quot;24&quot;: &quot;https://cdn.example.com/avatar.jpg&quot;
+      }
+    }
+  ]
+}
+</code></pre><p></p><h3>API: create review</h3><p></p><p><code>POST /products/reviews</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;product_id&quot;: 101,
+  &quot;review&quot;: &quot;Very good quality&quot;,
+  &quot;rating&quot;: 5,
+  &quot;reviewer&quot;: &quot;John Doe&quot;,
+  &quot;reviewer_email&quot;: &quot;john@example.com&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Review submitted&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: 501
+  }
+}
+</code></pre><p></p><h3>API: can review</h3><p></p><p><code>GET /reviews/can-review/{productId}?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Review permission checked&quot;,
+  &quot;data&quot;: {
+    &quot;canReview&quot;: true,
+    &quot;reason&quot;: null
+  }
+}
+</code></pre><p></p><p>This API is required because review entry should only be enabled if the user has completed or delivered purchase history for that product.</p><p></p><h3>API: related products</h3><p></p><p><code>GET /products/{productId}/related?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Related products fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: 102,
+      &quot;name&quot;: &quot;Training Shoes&quot;,
+      &quot;slug&quot;: &quot;training-shoes&quot;,
+      &quot;on_sale&quot;: false,
+      &quot;average_rating&quot;: &quot;4.3&quot;,
+      &quot;review_count&quot;: 9,
+      &quot;images&quot;: [
+        {
+          &quot;id&quot;: 2,
+          &quot;src&quot;: &quot;https://cdn.example.com/p2.jpg&quot;,
+          &quot;thumbnail&quot;: &quot;https://cdn.example.com/p2-thumb.jpg&quot;
+        }
+      ],
+      &quot;prices&quot;: {
+        &quot;currency_code&quot;: &quot;QAR&quot;,
+        &quot;price&quot;: &quot;220&quot;,
+        &quot;regular_price&quot;: &quot;220&quot;,
+        &quot;sale_price&quot;: &quot;220&quot;
+      }
+    }
+  ]
+}
+</code></pre><p></p><h3>Review requirement in Product Details screen</h3><p></p><p>Product Details screen must support:</p><p></p><ul><li>showing review summary</li><li>showing review list</li><li>checking whether user can review</li><li>submitting a review if eligible</li></ul><p></p><p>The backend should therefore support this full review flow:</p><p></p><ul><li>`GET /products/reviews`</li><li>`GET /reviews/can-review/{productId}`</li><li>`POST /products/reviews`</li></ul><p></p><h2>12. Wishlist Screen</h2><p></p><h3>API: add wishlist</h3><p></p><p><code>POST /wishlist/add?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;productId&quot;: &quot;101&quot;,
+  &quot;productName&quot;: &quot;Running Shoes&quot;,
+  &quot;productImage&quot;: &quot;https://cdn.example.com/p1.jpg&quot;,
+  &quot;price&quot;: &quot;199&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Added to wishlist&quot;,
+  &quot;data&quot;: {
+    &quot;saved&quot;: true
+  }
+}
+</code></pre><p></p><h3>API: get wishlist</h3><p></p><p><code>GET /wishlist/get?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Wishlist fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;wish_1&quot;,
+      &quot;productId&quot;: &quot;101&quot;,
+      &quot;productName&quot;: &quot;Running Shoes&quot;,
+      &quot;productImage&quot;: &quot;https://cdn.example.com/p1.jpg&quot;,
+      &quot;price&quot;: &quot;199&quot;,
+      &quot;createdAt&quot;: &quot;2026-03-25T08:00:00.000Z&quot;
+    }
+  ]
+}
+</code></pre><p></p><h3>API: remove wishlist</h3><p></p><p><code>DELETE /wishlist/remove?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;productId&quot;: &quot;101&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Removed from wishlist&quot;,
+  &quot;data&quot;: {
+    &quot;removed&quot;: true
+  }
+}
+</code></pre><p></p><h2>13. Cart Screen</h2><p></p><h3>API: add to cart</h3><p></p><p><code>POST /cart/add</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;productId&quot;: &quot;101&quot;,
+  &quot;quantity&quot;: 2,
+  &quot;variation&quot;: [
+    {
+      &quot;attribute&quot;: &quot;Size&quot;,
+      &quot;value&quot;: &quot;UK 8&quot;
+    }
+  ],
+  &quot;currencyCode&quot;: &quot;QAR&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Added to cart&quot;,
+  &quot;data&quot;: {
+    &quot;cartCount&quot;: 3
+  }
+}
+</code></pre><p></p><h3>API: get cart</h3><p></p><p><code>GET /cart/get?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Cart fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;cart_1&quot;,
+      &quot;userId&quot;: &quot;usr_123&quot;,
+      &quot;productId&quot;: &quot;101&quot;,
+      &quot;quantity&quot;: 2,
+      &quot;variation&quot;: [
+        {
+          &quot;attribute&quot;: &quot;Size&quot;,
+          &quot;value&quot;: &quot;UK 8&quot;
+        }
+      ],
+      &quot;title&quot;: &quot;Running Shoes&quot;,
+      &quot;image&quot;: &quot;https://cdn.example.com/p1.jpg&quot;,
+      &quot;price&quot;: &quot;199&quot;,
+      &quot;couponCode&quot;: null,
+      &quot;discountPercentage&quot;: 0,
+      &quot;totalPrice&quot;: 398,
+      &quot;createdAt&quot;: &quot;2026-03-25T09:00:00.000Z&quot;,
+      &quot;updatedAt&quot;: &quot;2026-03-25T09:05:00.000Z&quot;
+    }
+  ]
+}
+</code></pre><p></p><h3>API: update cart item</h3><p></p><p><code>PATCH /cart/update</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;productId&quot;: &quot;101&quot;,
+  &quot;quantity&quot;: 3
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Cart updated&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;cart_1&quot;,
+    &quot;productId&quot;: &quot;101&quot;,
+    &quot;quantity&quot;: 3,
+    &quot;totalPrice&quot;: 597
+  }
+}
+</code></pre><p></p><h3>API: remove cart item</h3><p></p><p><code>DELETE /cart/remove</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;productId&quot;: &quot;101&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Item removed&quot;,
+  &quot;data&quot;: {
+    &quot;removed&quot;: true
+  }
+}
+</code></pre><p></p><h3>API: apply coupon</h3><p></p><p><code>POST /cart/apply-coupon</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;couponCode&quot;: &quot;RAMADAN10&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Coupon applied&quot;,
+  &quot;data&quot;: {
+    &quot;couponCode&quot;: &quot;RAMADAN10&quot;,
+    &quot;discountPercentage&quot;: 10
+  }
+}
+</code></pre><p></p><h3>API: cart with shipping totals</h3><p></p><p><code>POST /cart/get-with-shipping?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;couponCode&quot;: &quot;RAMADAN10&quot;,
+  &quot;email&quot;: &quot;john@example.com&quot;,
+  &quot;currencyCode&quot;: &quot;QAR&quot;,
+  &quot;user&quot;: {
+    &quot;id&quot;: &quot;usr_123&quot;
+  }
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Cart totals fetched&quot;,
+  &quot;data&quot;: {
+    &quot;items&quot;: [
+      {
+        &quot;id&quot;: &quot;cart_1&quot;,
+        &quot;productId&quot;: &quot;101&quot;,
+        &quot;title&quot;: &quot;Running Shoes&quot;,
+        &quot;quantity&quot;: 2,
+        &quot;price&quot;: 199,
+        &quot;total&quot;: 398
+      }
+    ],
+    &quot;summary&quot;: {
+      &quot;subTotal&quot;: 398,
+      &quot;discount&quot;: 39.8,
+      &quot;shippingCost&quot;: 25,
+      &quot;grandTotal&quot;: 383.2,
+      &quot;currencyCode&quot;: &quot;QAR&quot;
+    },
+    &quot;coupon&quot;: {
+      &quot;code&quot;: &quot;RAMADAN10&quot;,
+      &quot;discountPercentage&quot;: 10
+    },
+    &quot;shippingMethods&quot;: [
+      {
+        &quot;method_id&quot;: &quot;flat_rate&quot;,
+        &quot;title&quot;: &quot;Standard Shipping&quot;,
+        &quot;cost&quot;: 25
+      }
+    ]
+  }
+}
+</code></pre><p></p><h2>14. Checkout Payment Screen</h2><p></p><h3>API: complete checkout</h3><p></p><p><code>POST /checkout/complete</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;payment_method&quot;: &quot;skipcash&quot;,
+  &quot;payment_data&quot;: [],
+  &quot;currencyCode&quot;: &quot;QAR&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Order created successfully&quot;,
+  &quot;data&quot;: {
+    &quot;sessionId&quot;: &quot;sess_123&quot;,
+    &quot;orderId&quot;: &quot;ord_123&quot;,
+    &quot;order&quot;: {
+      &quot;id&quot;: &quot;ord_123&quot;,
+      &quot;wcOrderId&quot;: 4501,
+      &quot;wcOrderKey&quot;: &quot;wc_key_123&quot;,
+      &quot;wcOrderStatus&quot;: &quot;pending&quot;,
+      &quot;wcPaymentStatus&quot;: &quot;pending&quot;,
+      &quot;currency&quot;: &quot;QAR&quot;,
+      &quot;total&quot;: &quot;383.2&quot;,
+      &quot;userId&quot;: &quot;usr_123&quot;,
+      &quot;items&quot;: [],
+      &quot;customerData&quot;: {},
+      &quot;paymentMethod&quot;: &quot;skipcash&quot;,
+      &quot;paymentData&quot;: [],
+      &quot;trackingUrl&quot;: &quot;https://tracking.example.com/4501&quot;,
+      &quot;isPaid&quot;: false,
+      &quot;paidAt&quot;: null,
+      &quot;isDelivered&quot;: false,
+      &quot;deliveredAt&quot;: null,
+      &quot;skipCashPaymentUrl&quot;: &quot;https://payment.skipcash.app/session/abc&quot;,
+      &quot;createdAt&quot;: &quot;2026-03-25T09:30:00.000Z&quot;,
+      &quot;updatedAt&quot;: &quot;2026-03-25T09:30:00.000Z&quot;
+    }
+  }
+}
+</code></pre><p></p><h2>15. Order Overview Screen</h2><p></p><h3>API: order details by order id</h3><p></p><p><code>GET /checkout/order/{orderId}?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Order details fetched&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;ord_123&quot;,
+    &quot;wcOrderId&quot;: &quot;4501&quot;,
+    &quot;userId&quot;: &quot;usr_123&quot;,
+    &quot;wcOrderStatus&quot;: &quot;processing&quot;,
+    &quot;wcPaymentStatus&quot;: &quot;paid&quot;,
+    &quot;wcOrderKey&quot;: &quot;wc_key_123&quot;,
+    &quot;payment_method&quot;: &quot;skipcash&quot;,
+    &quot;skipCashPaymentUrl&quot;: &quot;&quot;,
+    &quot;skipCashTransactionId&quot;: &quot;txn_001&quot;,
+    &quot;customerName&quot;: &quot;John Doe&quot;,
+    &quot;customerEmail&quot;: &quot;john@example.com&quot;,
+    &quot;customerPhone&quot;: &quot;+97450000000&quot;,
+    &quot;itemsCount&quot;: 2,
+    &quot;trackingUrl&quot;: &quot;https://tracking.example.com/4501&quot;,
+    &quot;statusDisplay&quot;: &quot;Processing&quot;,
+    &quot;currency&quot;: &quot;QAR&quot;,
+    &quot;netTotal&quot;: 398,
+    &quot;discount&quot;: 39.8,
+    &quot;shippingCost&quot;: 25,
+    &quot;grandTotal&quot;: 383.2,
+    &quot;total&quot;: 383.2,
+    &quot;couponCode&quot;: &quot;RAMADAN10&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-25T09:30:00.000Z&quot;,
+    &quot;paidAt&quot;: &quot;2026-03-25T09:35:00.000Z&quot;,
+    &quot;deliveredAt&quot;: null,
+    &quot;isPaid&quot;: true,
+    &quot;isDelivered&quot;: false,
+    &quot;items&quot;: [],
+    &quot;customer_data&quot;: {}
+  }
+}
+</code></pre><p></p><h2>16. My Orders Screen</h2><p></p><h3>API: all my orders</h3><p></p><p><code>GET /checkout/user/{userId}?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Orders fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;ord_123&quot;,
+      &quot;wcOrderId&quot;: &quot;4501&quot;,
+      &quot;userId&quot;: &quot;usr_123&quot;,
+      &quot;wcOrderStatus&quot;: &quot;processing&quot;,
+      &quot;wcPaymentStatus&quot;: &quot;paid&quot;,
+      &quot;wcOrderKey&quot;: &quot;wc_key_123&quot;,
+      &quot;payment_method&quot;: &quot;skipcash&quot;,
+      &quot;skipCashPaymentUrl&quot;: &quot;&quot;,
+      &quot;skipCashTransactionId&quot;: &quot;txn_001&quot;,
+      &quot;customerName&quot;: &quot;John Doe&quot;,
+      &quot;customerEmail&quot;: &quot;john@example.com&quot;,
+      &quot;customerPhone&quot;: &quot;+97450000000&quot;,
+      &quot;itemsCount&quot;: 2,
+      &quot;trackingUrl&quot;: &quot;https://tracking.example.com/4501&quot;,
+      &quot;statusDisplay&quot;: &quot;Processing&quot;,
+      &quot;currency&quot;: &quot;QAR&quot;,
+      &quot;netTotal&quot;: 398,
+      &quot;discount&quot;: 39.8,
+      &quot;shippingCost&quot;: 25,
+      &quot;grandTotal&quot;: 383.2,
+      &quot;total&quot;: 383.2,
+      &quot;couponCode&quot;: &quot;RAMADAN10&quot;,
+      &quot;createdAt&quot;: &quot;2026-03-25T09:30:00.000Z&quot;,
+      &quot;paidAt&quot;: &quot;2026-03-25T09:35:00.000Z&quot;,
+      &quot;deliveredAt&quot;: null,
+      &quot;isPaid&quot;: true,
+      &quot;isDelivered&quot;: false,
+      &quot;items&quot;: [],
+      &quot;customer_data&quot;: {}
+    }
+  ]
+}
+</code></pre><p></p><h3>API: orders by status</h3><p></p><p><code>GET /checkout/status/{status}?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><p>Use the same response shape as My Orders.</p><p></p><h2>17. Order Tracking Screen</h2><p></p><h3>API: tracking</h3><p></p><p><code>GET /tracking/order/{orderId}?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Tracking fetched&quot;,
+  &quot;data&quot;: {
+    &quot;orderId&quot;: 4501,
+    &quot;orderStatus&quot;: &quot;processing&quot;,
+    &quot;trackingItems&quot;: [
+      {
+        &quot;status&quot;: &quot;Package received&quot;,
+        &quot;location&quot;: &quot;Doha Hub&quot;,
+        &quot;timestamp&quot;: &quot;2026-03-25T10:00:00.000Z&quot;
+      }
+    ],
+    &quot;totalTracking&quot;: 1,
+    &quot;shipping&quot;: {
+      &quot;first_name&quot;: &quot;John&quot;,
+      &quot;last_name&quot;: &quot;Doe&quot;,
+      &quot;company&quot;: &quot;&quot;,
+      &quot;address_1&quot;: &quot;Street 1&quot;,
+      &quot;address_2&quot;: &quot;Building 20&quot;,
+      &quot;city&quot;: &quot;Doha&quot;,
+      &quot;state&quot;: &quot;Doha&quot;,
+      &quot;postcode&quot;: &quot;00000&quot;,
+      &quot;country&quot;: &quot;QA&quot;,
+      &quot;phone&quot;: &quot;+97450000000&quot;
+    },
+    &quot;shippingLines&quot;: [
+      {
+        &quot;id&quot;: 1,
+        &quot;method_title&quot;: &quot;Standard Shipping&quot;,
+        &quot;method_id&quot;: &quot;flat_rate&quot;,
+        &quot;instance_id&quot;: &quot;1&quot;,
+        &quot;total&quot;: &quot;25&quot;,
+        &quot;total_tax&quot;: &quot;0&quot;,
+        &quot;taxes&quot;: [],
+        &quot;tax_status&quot;: &quot;taxable&quot;,
+        &quot;meta_data&quot;: []
+      }
+    ]
+  }
+}
+</code></pre><p></p><h2>17A. Order Details Screen</h2><p></p><p>Order Details screen should support:</p><p></p><ul><li>list of purchased items</li><li>order summary</li><li>delivery address</li><li>payment method</li><li>order status</li><li>review action for each product once order is completed or delivered</li></ul><p></p><h3>API: order details</h3><p></p><p><code>GET /checkout/order/{orderId}?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Order details fetched&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;ord_123&quot;,
+    &quot;wcOrderId&quot;: &quot;4501&quot;,
+    &quot;userId&quot;: &quot;usr_123&quot;,
+    &quot;wcOrderStatus&quot;: &quot;completed&quot;,
+    &quot;wcPaymentStatus&quot;: &quot;paid&quot;,
+    &quot;wcOrderKey&quot;: &quot;wc_key_123&quot;,
+    &quot;payment_method&quot;: &quot;skipcash&quot;,
+    &quot;skipCashPaymentUrl&quot;: &quot;&quot;,
+    &quot;skipCashTransactionId&quot;: &quot;txn_001&quot;,
+    &quot;customerName&quot;: &quot;John Doe&quot;,
+    &quot;customerEmail&quot;: &quot;john@example.com&quot;,
+    &quot;customerPhone&quot;: &quot;+97450000000&quot;,
+    &quot;itemsCount&quot;: 2,
+    &quot;trackingUrl&quot;: &quot;https://tracking.example.com/4501&quot;,
+    &quot;statusDisplay&quot;: &quot;Completed&quot;,
+    &quot;currency&quot;: &quot;QAR&quot;,
+    &quot;netTotal&quot;: 398,
+    &quot;discount&quot;: 39.8,
+    &quot;shippingCost&quot;: 25,
+    &quot;grandTotal&quot;: 383.2,
+    &quot;total&quot;: 383.2,
+    &quot;couponCode&quot;: &quot;RAMADAN10&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-25T09:30:00.000Z&quot;,
+    &quot;paidAt&quot;: &quot;2026-03-25T09:35:00.000Z&quot;,
+    &quot;deliveredAt&quot;: &quot;2026-03-28T12:00:00.000Z&quot;,
+    &quot;isPaid&quot;: true,
+    &quot;isDelivered&quot;: true,
+    &quot;items&quot;: [
+      {
+        &quot;id&quot;: &quot;item_1&quot;,
+        &quot;image&quot;: &quot;https://cdn.example.com/p1.jpg&quot;,
+        &quot;price&quot;: 199,
+        &quot;title&quot;: &quot;Running Shoes&quot;,
+        &quot;userId&quot;: &quot;usr_123&quot;,
+        &quot;quantity&quot;: 1,
+        &quot;productId&quot;: &quot;101&quot;,
+        &quot;variation&quot;: [
+          {
+            &quot;attribute&quot;: &quot;Size&quot;,
+            &quot;value&quot;: &quot;UK 8&quot;
+          }
+        ],
+        &quot;couponCode&quot;: &quot;RAMADAN10&quot;,
+        &quot;discountPercentage&quot;: 10,
+        &quot;createdAt&quot;: &quot;2026-03-25T09:30:00.000Z&quot;,
+        &quot;updatedAt&quot;: &quot;2026-03-25T09:30:00.000Z&quot;,
+        &quot;reviewEligibility&quot;: {
+          &quot;canReview&quot;: true,
+          &quot;reason&quot;: null,
+          &quot;alreadyReviewed&quot;: false
+        }
+      }
+    ],
+    &quot;customer_data&quot;: {
+      &quot;shipping_address&quot;: {
+        &quot;first_name&quot;: &quot;John&quot;,
+        &quot;last_name&quot;: &quot;Doe&quot;,
+        &quot;address_1&quot;: &quot;Street 1&quot;,
+        &quot;address_2&quot;: &quot;Building 20&quot;,
+        &quot;city&quot;: &quot;Doha&quot;,
+        &quot;state&quot;: &quot;Doha&quot;,
+        &quot;postcode&quot;: &quot;00000&quot;,
+        &quot;country&quot;: &quot;QA&quot;,
+        &quot;phone&quot;: &quot;+97450000000&quot;
+      }
+    }
+  }
+}
+</code></pre><p></p><h3>Review requirement in Order Details screen</h3><p></p><p>Once the order is completed or delivered, each product in the order details screen should be able to:</p><p></p><ul><li>show whether it can be reviewed</li><li>open add review flow</li><li>submit review for that product</li></ul><p></p><p>Required APIs for this flow:</p><p></p><ul><li>`GET /checkout/order/{orderId}?lang=en&amp;currencyCode=QAR`</li><li>`GET /reviews/can-review/{productId}?lang=en&amp;currencyCode=QAR`</li><li>`POST /products/reviews`</li></ul><p></p><p>Suggested backend behavior:</p><p></p><ul><li>if possible, include `reviewEligibility` per order item inside order details response</li><li>this reduces extra API calls from the app</li></ul><p></p><h2>18. Notifications Screen</h2><p></p><h3>API: get notifications</h3><p></p><p><code>GET /users/notifications/me?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Notifications fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;noti_1&quot;,
+      &quot;userId&quot;: &quot;usr_123&quot;,
+      &quot;title&quot;: &quot;Order shipped&quot;,
+      &quot;body&quot;: &quot;Your order #4501 has been shipped&quot;,
+      &quot;data&quot;: {
+        &quot;type&quot;: &quot;order&quot;,
+        &quot;orderId&quot;: &quot;ord_123&quot;
+      },
+      &quot;isRead&quot;: false,
+      &quot;createdAt&quot;: &quot;2026-03-25T10:00:00.000Z&quot;
+    }
+  ]
+}
+</code></pre><p></p><h3>API: mark notification read</h3><p></p><p><code>PATCH /users/notifications/{id}/read?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Payload:</p><p></p><pre><code>{}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Notification updated&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;noti_1&quot;,
+    &quot;isRead&quot;: true
+  }
+}
+</code></pre><p></p><h3>API: mark all read</h3><p></p><p><code>PATCH /users/notifications/read-all?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Payload:</p><p></p><pre><code>{}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;All notifications marked as read&quot;,
+  &quot;data&quot;: {
+    &quot;done&quot;: true
+  }
+}
+</code></pre><p></p><h2>19. Profile Screen</h2><p></p><h3>API: get profile</h3><p></p><p><code>GET /users/{userId}?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Profile fetched&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;usr_123&quot;,
+    &quot;email&quot;: &quot;john@example.com&quot;,
+    &quot;phone&quot;: &quot;+97450000000&quot;,
+    &quot;fullName&quot;: &quot;John Doe&quot;,
+    &quot;isActive&quot;: true,
+    &quot;role&quot;: &quot;customer&quot;,
+    &quot;notificationToken&quot;: &quot;fcm_xxx&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-25T08:00:00.000Z&quot;,
+    &quot;updatedAt&quot;: &quot;2026-03-25T08:00:00.000Z&quot;
+  }
+}
+</code></pre><p></p><h2>20. My Info / Edit Profile Screen</h2><p></p><h3>API: update profile</h3><p></p><p><code>PATCH /users/{userId}</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;fullName&quot;: &quot;John A. Doe&quot;,
+  &quot;email&quot;: &quot;john@example.com&quot;,
+  &quot;phone&quot;: &quot;+97450000000&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Profile updated&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;usr_123&quot;,
+    &quot;email&quot;: &quot;john@example.com&quot;,
+    &quot;phone&quot;: &quot;+97450000000&quot;,
+    &quot;fullName&quot;: &quot;John A. Doe&quot;,
+    &quot;isActive&quot;: true,
+    &quot;role&quot;: &quot;customer&quot;,
+    &quot;notificationToken&quot;: &quot;fcm_xxx&quot;,
+    &quot;createdAt&quot;: &quot;2026-03-25T08:00:00.000Z&quot;,
+    &quot;updatedAt&quot;: &quot;2026-03-25T10:15:00.000Z&quot;
+  }
+}
+</code></pre><p></p><h2>21. Account Settings Screen</h2><p></p><h3>API: delete account</h3><p></p><p><code>DELETE /users/{userId}</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Account deleted&quot;,
+  &quot;data&quot;: {
+    &quot;deleted&quot;: true
+  }
+}
+</code></pre><p></p><h2>22. Change Language Screen</h2><p></p><h3>API: language list</h3><p></p><p><code>GET /utility/languages?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Languages fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;code&quot;: &quot;en&quot;,
+      &quot;name&quot;: &quot;English&quot;,
+      &quot;isDefault&quot;: true
+    },
+    {
+      &quot;code&quot;: &quot;ar&quot;,
+      &quot;name&quot;: &quot;Arabic&quot;,
+      &quot;isDefault&quot;: false
+    }
+  ]
+}
+</code></pre><p></p><h2>23. Change Currency Screen</h2><p></p><h3>API: currency list</h3><p></p><p><code>GET /currency/list?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Currencies fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;code&quot;: &quot;QAR&quot;,
+      &quot;symbol&quot;: &quot;QAR&quot;,
+      &quot;name&quot;: &quot;Qatari Riyal&quot;,
+      &quot;minorUnit&quot;: 2,
+      &quot;decimalSeparator&quot;: &quot;.&quot;,
+      &quot;thousandSeparator&quot;: &quot;,&quot;,
+      &quot;prefix&quot;: &quot;QAR &quot;,
+      &quot;suffix&quot;: null
+    }
+  ]
+}
+</code></pre><p></p><h3>API: update selected currency</h3><p></p><p><code>PATCH /users/{userId}/currency</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;currency&quot;: &quot;USD&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Currency updated&quot;,
+  &quot;data&quot;: {
+    &quot;currency&quot;: &quot;USD&quot;
+  }
+}
+</code></pre><p></p><h3>API: currency rates</h3><p></p><p><code>GET /utility/currency-rates?base=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Rates fetched&quot;,
+  &quot;data&quot;: {
+    &quot;base&quot;: &quot;QAR&quot;,
+    &quot;rates&quot;: {
+      &quot;USD&quot;: 0.27,
+      &quot;EUR&quot;: 0.25,
+      &quot;SAR&quot;: 1.03
+    },
+    &quot;updatedAt&quot;: &quot;2026-03-25T10:00:00.000Z&quot;
+  }
+}
+</code></pre><p></p><h2>24. Help Screen</h2><p></p><h3>API: help content</h3><p></p><p><code>GET /cms/help?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Help content fetched&quot;,
+  &quot;data&quot;: {
+    &quot;sections&quot;: [
+      {
+        &quot;title&quot;: &quot;Shipping and Delivery&quot;,
+        &quot;questions&quot;: [
+          {
+            &quot;question&quot;: &quot;How long does shipping take?&quot;,
+            &quot;answer&quot;: &quot;Shipping usually takes 3 to 5 business days.&quot;
+          }
+        ]
+      }
+    ],
+    &quot;contact&quot;: {
+      &quot;whatsapp&quot;: &quot;+97477223333&quot;,
+      &quot;email&quot;: &quot;info@camiontrading.com&quot;
+    }
+  }
+}
+</code></pre><p></p><h2>24A. App Static Design Content</h2><p></p><p>Some screens are visually static in the UI, but their content should still be available from backend so the design can be changed without app release.</p><p></p><p>This includes:</p><p></p><ul><li>Home section labels</li><li>Home promo cards</li><li>Settings menu items</li><li>Join affiliate / join influencer welcome text</li><li>Pending / rejected copy</li><li>Empty states</li><li>Support contact values</li></ul><p></p><h3>API: app UI content</h3><p></p><p><code>GET /cms/app-ui?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;App UI content fetched&quot;,
+  &quot;data&quot;: {
+    &quot;home&quot;: {
+      &quot;tabs&quot;: [
+        { &quot;id&quot;: &quot;all&quot;, &quot;label&quot;: &quot;All&quot; },
+        { &quot;id&quot;: &quot;popular_products&quot;, &quot;label&quot;: &quot;Popular Products&quot; },
+        { &quot;id&quot;: &quot;top_sales&quot;, &quot;label&quot;: &quot;Top Sales&quot; },
+        { &quot;id&quot;: &quot;recommended&quot;, &quot;label&quot;: &quot;Recommended&quot; }
+      ],
+      &quot;promoCards&quot;: [
+        {
+          &quot;id&quot;: &quot;join_us&quot;,
+          &quot;title&quot;: &quot;Join Our Team&quot;,
+          &quot;description&quot;: &quot;Become part of Camion and start earning with us.&quot;,
+          &quot;buttonText&quot;: &quot;Join Us&quot;
+        }
+      ]
+    },
+    &quot;settings&quot;: {
+      &quot;items&quot;: [
+        {
+          &quot;id&quot;: &quot;change_language&quot;,
+          &quot;title&quot;: &quot;Change Language&quot;
+        },
+        {
+          &quot;id&quot;: &quot;help&quot;,
+          &quot;title&quot;: &quot;Help&quot;
+        },
+        {
+          &quot;id&quot;: &quot;chat_support&quot;,
+          &quot;title&quot;: &quot;Chat Support&quot;
+        }
+      ]
+    },
+    &quot;affiliate&quot;: {
+      &quot;welcome&quot;: {
+        &quot;title&quot;: &quot;Welcome&quot;,
+        &quot;subtitle&quot;: &quot;Start your affiliate journey with Camion.&quot;
+      },
+      &quot;pending&quot;: {
+        &quot;title&quot;: &quot;Application Under Review&quot;,
+        &quot;subtitle&quot;: &quot;We are currently reviewing your request.&quot;
+      },
+      &quot;rejected&quot;: {
+        &quot;title&quot;: &quot;Application Rejected&quot;,
+        &quot;subtitle&quot;: &quot;You can apply again later.&quot;
+      }
+    },
+    &quot;influencer&quot;: {
+      &quot;welcome&quot;: {
+        &quot;title&quot;: &quot;Welcome&quot;,
+        &quot;subtitle&quot;: &quot;Start your influencer journey with Camion.&quot;
+      },
+      &quot;pending&quot;: {
+        &quot;title&quot;: &quot;Application Under Review&quot;,
+        &quot;subtitle&quot;: &quot;We are currently reviewing your request.&quot;
+      },
+      &quot;rejected&quot;: {
+        &quot;title&quot;: &quot;Application Rejected&quot;,
+        &quot;subtitle&quot;: &quot;You can apply again later.&quot;
+      }
+    },
+    &quot;emptyStates&quot;: {
+      &quot;wishlist&quot;: {
+        &quot;title&quot;: &quot;No wishlist items yet&quot;,
+        &quot;subtitle&quot;: &quot;Start saving products you like.&quot;
+      },
+      &quot;notifications&quot;: {
+        &quot;title&quot;: &quot;No notifications yet&quot;,
+        &quot;subtitle&quot;: &quot;We will show updates here.&quot;
+      },
+      &quot;coupons&quot;: {
+        &quot;title&quot;: &quot;No coupons found&quot;,
+        &quot;subtitle&quot;: &quot;Your coupon list will appear here.&quot;
+      }
+    },
+    &quot;support&quot;: {
+      &quot;email&quot;: &quot;info@camiontrading.com&quot;,
+      &quot;whatsapp&quot;: &quot;+97477223333&quot;
+    }
+  }
+}
+</code></pre><p></p><h2>25. Privacy / Return Policy Screen</h2><p></p><h3>API: policies</h3><p></p><p><code>GET /cms/policies?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Policies fetched&quot;,
+  &quot;data&quot;: {
+    &quot;title&quot;: &quot;Privacy Policy&quot;,
+    &quot;sections&quot;: [
+      {
+        &quot;title&quot;: &quot;Terms of Use&quot;,
+        &quot;points&quot;: [
+          &quot;Point one&quot;,
+          &quot;Point two&quot;
+        ]
+      },
+      {
+        &quot;title&quot;: &quot;Return Policy&quot;,
+        &quot;points&quot;: [
+          &quot;Point one&quot;,
+          &quot;Point two&quot;
+        ]
+      }
+    ]
+  }
+}
+</code></pre><p></p><h2>26. Feedback Screen</h2><p></p><h3>API: submit feedback</h3><p></p><p><code>POST /feedback</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;subject&quot;: &quot;App feedback&quot;,
+  &quot;message&quot;: &quot;Checkout experience is good but needs clearer steps&quot;,
+  &quot;rating&quot;: 4,
+  &quot;channel&quot;: &quot;mobile-app&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Feedback submitted&quot;,
+  &quot;data&quot;: {
+    &quot;saved&quot;: true
+  }
+}
+</code></pre><p></p><h2>27. Affiliate / Influencer Join Screen</h2><p></p><h3>API: submit affiliate request</h3><p></p><p><code>POST /affiliates/request</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;fullName&quot;: &quot;John Doe&quot;,
+  &quot;gender&quot;: &quot;male&quot;,
+  &quot;nationality&quot;: &quot;Qatari&quot;,
+  &quot;bio&quot;: &quot;Content creator focused on fashion&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Request submitted&quot;,
+  &quot;data&quot;: {
+    &quot;affiliateId&quot;: &quot;aff_123&quot;,
+    &quot;status&quot;: &quot;pending&quot;
+  }
+}
+</code></pre><p></p><h2>28. Affiliate / Influencer Status Screen</h2><p></p><h3>API: my affiliate status</h3><p></p><p><code>GET /affiliates/me/status?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Affiliate status fetched&quot;,
+  &quot;data&quot;: {
+    &quot;affiliateId&quot;: &quot;aff_123&quot;,
+    &quot;fullName&quot;: &quot;John Doe&quot;,
+    &quot;status&quot;: &quot;approved&quot;,
+    &quot;token&quot;: &quot;affiliate_token_optional&quot;
+  }
+}
+</code></pre><p></p><h2>29. Affiliate / Influencer Account Screen</h2><p></p><h3>API: affiliate stats</h3><p></p><p><code>GET /affiliates/stats/me?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Affiliate stats fetched&quot;,
+  &quot;data&quot;: {
+    &quot;affiliate&quot;: {
+      &quot;id&quot;: &quot;aff_123&quot;,
+      &quot;fullName&quot;: &quot;John Doe&quot;,
+      &quot;status&quot;: &quot;approved&quot;,
+      &quot;type&quot;: &quot;influencer&quot;
+    },
+    &quot;walletBalance&quot;: 245.5,
+    &quot;totalEarnings&quot;: 1220.75,
+    &quot;couponsCreated&quot;: 4,
+    &quot;ordersCount&quot;: 18,
+    &quot;totalCommission&quot;: 245.5,
+    &quot;currencyCode&quot;: &quot;QAR&quot;
+  }
+}
+</code></pre><p></p><h2>30. Create Coupon Screen</h2><p></p><h3>API: create coupon</h3><p></p><p><code>POST /affiliates/coupon</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;code&quot;: &quot;JOHN10&quot;,
+  &quot;discountPercentage&quot;: 10,
+  &quot;expiryDate&quot;: &quot;2026-12-31&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Coupon created&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;coupon_1&quot;,
+    &quot;code&quot;: &quot;JOHN10&quot;,
+    &quot;discountPercentage&quot;: 10,
+    &quot;commissionPercentage&quot;: 5,
+    &quot;isActive&quot;: true
+  }
+}
+</code></pre><p></p><h2>31. My Coupons Screen</h2><p></p><h3>API: my coupons</h3><p></p><p><code>GET /affiliates/coupon/me?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Coupons fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;coupon_1&quot;,
+      &quot;code&quot;: &quot;JOHN10&quot;,
+      &quot;isActive&quot;: true,
+      &quot;discountPercentage&quot;: 10,
+      &quot;commissionPercentage&quot;: 5,
+      &quot;createdAt&quot;: &quot;2026-03-25T10:00:00.000Z&quot;,
+      &quot;affiliate&quot;: {
+        &quot;id&quot;: &quot;aff_123&quot;,
+        &quot;userId&quot;: &quot;usr_123&quot;,
+        &quot;fullName&quot;: &quot;John Doe&quot;,
+        &quot;gender&quot;: &quot;male&quot;,
+        &quot;nationality&quot;: &quot;Qatari&quot;,
+        &quot;status&quot;: &quot;approved&quot;,
+        &quot;type&quot;: &quot;influencer&quot;,
+        &quot;totalEarnings&quot;: 1220.75,
+        &quot;couponsCreated&quot;: 4,
+        &quot;bio&quot;: &quot;Content creator focused on fashion&quot;,
+        &quot;referralLink&quot;: &quot;https://camion.app/ref/aff_123&quot;,
+        &quot;walletBalance&quot;: 245.5,
+        &quot;createdAt&quot;: &quot;2026-03-01T00:00:00.000Z&quot;,
+        &quot;updatedAt&quot;: &quot;2026-03-25T10:00:00.000Z&quot;
+      },
+      &quot;orders&quot;: [
+        {
+          &quot;orderId&quot;: &quot;ord_123&quot;,
+          &quot;wcOrderId&quot;: &quot;4501&quot;,
+          &quot;userId&quot;: &quot;usr_999&quot;,
+          &quot;buyerName&quot;: &quot;Customer A&quot;,
+          &quot;buyerEmail&quot;: &quot;customer@example.com&quot;,
+          &quot;commission&quot;: 5.25,
+          &quot;total&quot;: 105,
+          &quot;createdAt&quot;: &quot;2026-03-25T10:00:00.000Z&quot;,
+          &quot;products&quot;: []
+        }
+      ]
+    }
+  ]
+}
+</code></pre><p></p><h2>32. Wallet Screen</h2><p></p><h3>API: wallet balance</h3><p></p><p><code>GET /affiliates/wallet?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Wallet fetched&quot;,
+  &quot;data&quot;: {
+    &quot;balance&quot;: 245.5,
+    &quot;currencyCode&quot;: &quot;QAR&quot;,
+    &quot;pending&quot;: 40,
+    &quot;available&quot;: 205.5
+  }
+}
+</code></pre><p></p><h3>API: wallet transactions</h3><p></p><p><code>GET /affiliates/wallet/transactions?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Transactions fetched&quot;,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;txn_1&quot;,
+      &quot;amount&quot;: 25.5,
+      &quot;description&quot;: &quot;Commission for order #4501&quot;,
+      &quot;createdAt&quot;: &quot;2026-03-25T10:00:00.000Z&quot;
+    }
+  ]
+}
+</code></pre><p></p><h2>33. Chatbot Screen</h2><p></p><h3>API: create chat session</h3><p></p><p><code>POST /api/chatbot/sessions</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;userId&quot;: &quot;usr_123&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Chat session created&quot;,
+  &quot;data&quot;: {
+    &quot;sessionId&quot;: &quot;chat_123&quot;
+  }
+}
+</code></pre><p></p><h3>API: chat history</h3><p></p><p><code>GET /api/chatbot/sessions/{sessionId}/history?lang=en&amp;currencyCode=QAR</code></p><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Chat history fetched&quot;,
+  &quot;data&quot;: {
+    &quot;sessionId&quot;: &quot;chat_123&quot;,
+    &quot;messages&quot;: [
+      {
+        &quot;role&quot;: &quot;user&quot;,
+        &quot;content&quot;: &quot;What is your return policy?&quot;,
+        &quot;timestamp&quot;: &quot;2026-03-25T10:00:00.000Z&quot;,
+        &quot;sources&quot;: []
+      },
+      {
+        &quot;role&quot;: &quot;assistant&quot;,
+        &quot;content&quot;: &quot;You can return items within 14 days.&quot;,
+        &quot;timestamp&quot;: &quot;2026-03-25T10:00:02.000Z&quot;,
+        &quot;sources&quot;: [
+          {
+            &quot;title&quot;: &quot;Return Policy&quot;,
+            &quot;content&quot;: &quot;Returns accepted within 14 days&quot;,
+            &quot;category&quot;: &quot;policy&quot;,
+            &quot;relevanceScore&quot;: 0.94
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre><p></p><h3>API: ask chatbot</h3><p></p><p><code>POST /api/chatbot/sessions/{sessionId}/ask</code></p><p></p><p>Payload:</p><p></p><pre><code>{
+  &quot;question&quot;: &quot;What is your return policy?&quot;,
+  &quot;limit&quot;: 5,
+  &quot;category&quot;: &quot;policy&quot;
+}
+</code></pre><p></p><p>Response:</p><p></p><pre><code>{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Chat answer fetched&quot;,
+  &quot;data&quot;: {
+    &quot;sessionId&quot;: &quot;chat_123&quot;,
+    &quot;answer&quot;: &quot;You can return items within 14 days.&quot;,
+    &quot;sources&quot;: [
+      {
+        &quot;title&quot;: &quot;Return Policy&quot;,
+        &quot;content&quot;: &quot;Returns accepted within 14 days&quot;,
+        &quot;category&quot;: &quot;policy&quot;,
+        &quot;relevanceScore&quot;: 0.94
+      }
+    ]
+  }
+}
+</code></pre><p></p><h2>34. Suggested Single Ownership View For Backend Team</h2><p></p><p>Even if backend is split internally, the mobile app should receive this as one full contract:</p><p></p><ul><li>Auth and profile</li><li>Address and utility data</li><li>Home and catalog</li><li>Product details and reviews</li><li>Wishlist</li><li>Cart and checkout</li><li>Orders and tracking</li><li>Notifications</li><li>CMS content like help and policies</li><li>Affiliate and wallet</li><li>Chatbot</li></ul><p></p><p>That way the mobile team can build every screen using one clear API document.</p><p></p><h2>Final Note</h2><p></p><p>This document is intended to be shared directly with:</p><p></p><ul><li>backend team for implementation</li><li>project lead for evaluation and prioritization</li></ul><p></p><p>If any field is missing during implementation, especially around product variations or section metadata, those can be finalized on the go as part of backend and app integration, while keeping the screen-level API coverage defined in this document intact.</p>
+</body>
+</html>

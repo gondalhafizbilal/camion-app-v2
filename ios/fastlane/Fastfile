@@ -1,0 +1,31 @@
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Distribute app to Firebase App Distribution"
+  lane :distribute do
+    # Clean build
+    sh "flutter clean"
+    
+    # Build iOS IPA for production
+    sh "flutter build ipa --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+    
+    # Get Firebase App ID from environment or directly specify it
+    firebase_app_id = ENV["FIREBASE_IOS_APP_ID"] || "1:577587095942:ios:YOUR_IOS_APP_ID"
+    
+    # Distribute to Firebase App Distribution
+    firebase_app_distribution(
+      app: firebase_app_id,
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+      ipa_path: "../build/ios/ipa/camion.ipa",
+      groups: "testers",
+      release_notes: "This is a test for iOS workflow on GitHub Actions"
+    )
+  end
+  
+  desc "Build iOS IPA"
+  lane :build do
+    sh "flutter clean"
+    sh "flutter build ipa --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+  end
+end

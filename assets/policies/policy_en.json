@@ -1,0 +1,459 @@
+{
+  "sections": [
+    {
+      "title": "Introduction",
+      "points": [
+        "Camion is an e-commerce service consisting of a website and a mobile app together, supported by IT, logistics, and payment infrastructure, to sell consumer products and services in Qatar and the Middle East region.",
+        "These general terms and conditions apply to buyers on the Camion website and app and govern your use of Camion and any related services.",
+        "By using the Camion website and app, you acknowledge that you accept these general terms and conditions in full. If you do not agree, you must not use the store.",
+        "If you use the Camion store while operating in a business or other organizational capacity, you acknowledge that you have the authority to agree to these general terms and conditions, and you guarantee your compliance and the compliance of the legal entity you represent."
+      ]
+    },
+    {
+      "title": "Registration and Account",
+      "points": [
+        "You may not register on the Camion website or app if you are under 18 years old, and you confirm that you are at least 18.",
+        "If you open an account on Camion, we will request your email/phone number, and you undertake to keep your credentials confidential.",
+        "You are responsible for any activity that occurs due to failing to keep your credentials confidential and may bear any resulting losses.",
+        "Customers are not permitted to create more than one account, and the company has the right to block additional accounts.",
+        "You agree to use the account yourself and not transfer it to a third party; you will be responsible if you authorize a third party to manage it.",
+        "Camion may suspend or cancel your account or modify its data without prior notice at its discretion, while refunding the value of any products or services that do not violate the terms.",
+        "You can cancel your account by contacting us."
+      ]
+    },
+    {
+      "title": "What Information We Collect",
+      "points": [
+        "We collect your personal information to provide and improve the service as described in the Privacy Policy.",
+        "Information may include: account and profile data, purchase, payment and shipping information, and customer support activity.",
+        "We may collect information from external sources such as data providers, marketing and advertising partners, and shipping providers.",
+        "We also collect information automatically such as device data, service usage, general geolocation, and cookies and similar technologies."
+      ]
+    },
+    {
+      "title": "Information from External Sources (Third Parties)",
+      "points": [
+        "In accordance with applicable laws, we may collect your personal information from external sources, such as:",
+        "Data providers: We receive and collect your personal information, such as identity verification data and fraud scores and risk assessments from information services to help us detect fraud, prevent unauthorized transactions, and protect the service.",
+        "Marketing and advertising partners: We collect information from our marketing and advertising partners, such as companies we collaborate with for marketing events or promoting the service. From these partnerships, we obtain information such as ads you clicked, referral data, cookies, and other tracking technologies used to analyze your visits or interactions with us.",
+        "We obtain your personal information, which may include username, address, email, mobile number, and purchase and/or payment information from third parties—for example, to comply with legal obligations, investigate claims or potential crimes, or to enable a party to assert its legal rights.",
+        "We obtain your personal information from third-party payment processors, which help us process transactions, provide the service, and prevent fraudulent or unlawful activities. The personal information payment processors pass to us includes your name, email address, billing address, and phone number.",
+        "We collect your personal information from third-party services:",
+        "Social media services: We may collect the username, profile picture, and email address associated with the external provider if you choose to register or sign in through that service.",
+        "Shipping providers: To complete shipping orders effectively, we obtain logistics information from shipping providers, such as shipment progress and delivery address, and we make this information available to you inside your account.",
+        "Information collected automatically: To improve your experience with the service and support the other purposes described in the Privacy Policy, we may automatically collect information about you, about your computer or mobile phone, your interactions with the service, and our communications with you over time.",
+        "Device data: We collect personal information about the device you use to access the service, such as device model, operating system, ISP, language settings, and unique identifiers (including identifiers used for advertising where permitted by law).",
+        "Service usage information: We collect personal information about your interactions with the service, such as items in your cart, pages you view, time on page, the referrer you came from, your interactions with the page, the search terms and images you looked for, browsing history, whether you opened emails or clicked links in them. We also collect service-related information such as crash reports and performance logs.",
+        "General geolocation data: We collect your approximate location based on technical information such as your IP address.",
+        "Cookies and similar technologies: We collect information using cookies and similar technologies that may be necessary to operate the service (such as those used to display products appropriate to language or location) or optional (such as those used to track and measure ad performance)."
+      ]
+    },
+    {
+      "title": "Refusal to Provide Information",
+      "points": [
+        "We need your personal information to provide certain services. If you do not provide the required information, we may not be able to provide some features of the service. Providing this information is optional, but not providing it may affect the quality of your experience."
+      ]
+    },
+    {
+      "title": "How and Why We Use Your Information",
+      "points": [
+        "We use the personal information we collect for multiple purposes, including developing, improving, supporting, and providing the service, enabling you to use its features while adhering to our Terms of Use.",
+        "We use your personal information for the following purposes:",
+        "Create and maintain account: We use your personal information to create your account on the service and maintain it, and to enable account security features (such as sending security codes via email or SMS).",
+        "We may use your personal information for the following: We use your personal information to create your account on the service and maintain it, and to enable account security features (such as sending security codes via email or SMS).",
+        "We use your information to receive and process orders, deliver products and services, process payments, communicate with you about orders, products, services, and promotions, and facilitate dispute resolution, returns, or refunds.",
+        "We use your information to improve features, analyze performance, fix errors, and maintain and enhance the service and our business. As part of these activities, we may create aggregated or de-identified data based on the personal information we collect.",
+        "We use your personal information to recommend features, products, and services that may interest you. We may also use it to determine your preferences and personalize your experience with the service.",
+        "We use your personal information to communicate with you (e.g., announcements, updates, security alerts, support and administrative messages) and to provide support for your requests, inquiries, and feedback.",
+        "We use your profile picture and contact information to identify you in promotional activities and to facilitate inviting your friends or contacts to join the service.",
+        "Marketing: We and our service providers collect and use your personal information for marketing purposes in accordance with applicable laws. To the extent permitted by law, we may send you direct marketing messages such as email, SMS, push messages, and WhatsApp messages. You can opt out of these messages as described in the ‘Your Rights and Choices’ section below.",
+        "We, our service providers, and our third-party advertising partners may collect and use your personal information for targeted advertising based on interests. For example, we may use your interactions with the service (such as browsing, search, and purchase history) and information in your profile (such as your country if recorded) to display personalized ads.",
+        "We do not use information that directly identifies you (such as your name or email) to display these ads.",
+        "We adhere to the self-regulatory principles for online behavioral advertising as set by the Digital Advertising Alliance, an organization that promotes responsible digital marketing and advertising.",
+        "We use your personal information to prevent, detect, investigate, and respond to fraud, unauthorized access to or use of the service, violations of the Terms of Use and other policies, or any misconduct.",
+        "We may use your personal information for compliance and to adhere to applicable laws, including responding to legal requests and proceedings (e.g., responding to subpoenas or requests from governmental or regulatory authorities).",
+        "We also use it to protect your rights and the rights of other users, and the safety and security of people or property (including initiating or defending legal claims).",
+        "We may also use the information to audit internal processes, enforce the terms and conditions that govern the service, and prevent fraudulent, harmful, or unlawful activities (including cyberattacks or identity theft).",
+        "Legal claims based on your consent:",
+        "In some cases, we may request your consent to collect, use, or share your personal information if required by law.",
+        "Cookies and similar technologies for technical, performance, advertising, analytics, and other purposes."
+      ]
+    },
+    {
+      "title": "How and Why We Share Your Information",
+      "points": [
+        "At Camion we care deeply about privacy. We may share your personal information with the following entities for the purposes described:",
+        "Affiliates: As a global company, our services are supported by affiliated entities within our group of companies.",
+        "At Camion we share some of your personal information with affiliates as needed to provide certain functions within the service, such as order fulfillment. This includes shipping address and contact information.",
+        "These entities adhere to the same privacy practices described in this policy or to equivalent or higher protective policies.",
+        "We share your personal information with third parties that provide services on our behalf or help us operate the service or our business (e.g., hosting, IT, customer support, email delivery, order fulfillment and delivery, marketing, fraud detection, security, customer research and website analytics).",
+        "These parties can only use the information to perform the required services or comply with legal obligations.",
+        "We share your personal information with our payment processors to complete payments, handle disputes, and/or issue refunds.",
+        "We may share your personal information with third-party advertising, marketing, and analytics companies for interest-based advertising and data analytics, as described in the Cookies and Similar Technologies Policy.",
+        "We may share your personal information with external parties you have identified or consented to.",
+        "If you choose to share a product link on Camion—for example, via a social network—please note that these third parties have their own privacy policies and terms of use.",
+        "We may share your personal information with external partners we collaborate with to provide or promote the service. For example, based on your communication preferences, we may share your personal information with external providers we have partnered with to send marketing emails or SMS messages.",
+        "We may share your personal information with our professional advisors (such as lawyers, auditors, bankers, and insurers), public authorities such as law enforcement in response to legal process (such as court orders), or with other parties (including financial institutions) for purposes described.",
+        "In the event of a sale, merger, or restructuring of the company, we may share some of your personal information with relevant parties (such as the purchaser or successor) to facilitate the transaction.",
+        "If your information is transferred as part of such operations, you will be informed via email or via a notice on the Camion website or app.",
+        "We may share your personal information with goods partners in relation to product reviews, your inquiries, or return requests.",
+        "This includes: shipping address, contact information, support conversations, and order information. For example, when a goods partner communicates directly with the shipper, the partner will not receive your payment data or device information.",
+        "Based on your settings and preferences, we may display your profile picture and username to other users, including when participating in referral or promotional programs or when reviewing or rating a product.",
+        "You can disable the appearance of this information at any time from privacy settings."
+      ]
+    },
+    {
+      "title": "Data Subject Rights",
+      "points": [
+        "You have rights related to the personal information we hold about you. These rights may vary based on where you live or are located, and include:",
+        "The right to obtain information about how your personal data is processed and to access the personal data we hold about you.",
+        "The right to withdraw your consent to the processing of your personal data at any time (noting that we may retain the right to continue processing if there is another legal basis besides consent). In some cases, the right to receive your data in a machine-readable, commonly used format, or to request its transfer to a third party when technically feasible (applies only to data you provided to us).",
+        "The right to request correction of your personal data if it is inaccurate or incomplete.",
+        "The right to request deletion of your personal data in certain circumstances (noting that we may be legally required to retain some data).",
+        "The right to object to the processing of your personal data or request restriction of processing in certain circumstances. We may retain the right to continue processing if there is a legal justification.",
+        "The right to file a complaint with your data protection authority, or with us directly, if you believe we have violated your rights under applicable privacy laws.",
+        "You can exercise your rights by contacting us using the details in the ‘Contact’ section below.",
+        "We will respond to complaints in writing within a reasonable time and will provide you with information regarding the data protection authority upon request.",
+        "You may have rights to access, delete, or correct your personal information in accordance with applicable laws. You can delete your account through the ‘Settings’ section in the app."
+      ]
+    },
+    {
+      "title": "Opting Out of Marketing Messages",
+      "points": [
+        "To manage your preferences or opt out of marketing messages, you can follow one of the following methods:",
+        "Note: You can still use Camion even if you opt out of marketing communications.",
+        "When you provide us with your email address, we may send you promotional messages in accordance with applicable laws.",
+        "If you do not wish to receive these messages, you can click the ‘Unsubscribe’ link at the bottom of each message.",
+        "To manage your preferences or opt out of marketing messages, you can take any of the following actions:",
+        "Don't worry—You can still use Camion even if you opt out of marketing communications.",
+        "Email promotions: When you provide your email address, we may send you marketing messages subject to applicable laws. If you no longer wish to receive them, you can use the ‘Unsubscribe’ option at the bottom of each email. You can also disable marketing messages from the ‘Notifications’ list in the app.",
+        "Mobile promotions: When you provide your phone number, we may send you marketing SMS messages. If you no longer wish to receive them, follow the instructions within the SMS or disable them from the notifications list.",
+        "WhatsApp promotions: When you link your phone number to WhatsApp, we may send you marketing messages via WhatsApp. If you no longer wish to receive them, follow the instructions in the messages or disable them from notifications.",
+        "Push notifications: You may receive push notifications from the Camion app in accordance with applicable laws.",
+        "Change cookie and similar technology settings: Most browsers allow you to remove or reject cookies. To do so, follow the instructions in your browser settings.",
+        "Please note that disabling cookies may affect the performance of the service.",
+        "For more about cookies and similar technologies, and how to manage or delete them, you can visit the website."
+      ]
+    },
+    {
+      "title": "Links to Third-Party Platforms",
+      "points": [
+        "The service may contain links to websites, apps, or other services of third parties.",
+        "Camion content may be embedded in or appear within those services, but they are not affiliated with us.",
+        "If you link your account to an external platform (such as social media), some of your information may be collected from that platform.",
+        "We recommend reading the privacy policies and terms of use of those third parties.",
+        "Please refer to the Cookies and Similar Technologies Policy for more information about the choices and rights available to you and how to exercise them."
+      ]
+    },
+    {
+      "title": "Data Security and Retention",
+      "points": [
+        "The security of your personal information is very important to us. We use technical and organizational measures to help protect your data from:",
+        "Loss",
+        "Theft",
+        "Misuse",
+        "Unauthorized access",
+        "Unauthorized disclosure, alteration, or destruction",
+        "We also follow PCI-DSS standards for handling credit card data.",
+        "However, please note that security risks always exist when using the internet or any information technology."
+      ]
+    },
+    {
+      "title": "Data Retention Period",
+      "points": [
+        "We retain your personal information only for as long as necessary to achieve the purposes for which it was collected,",
+        "as well as to comply with legal or accounting requirements, defend legal claims, or for fraud prevention purposes.",
+        "When determining an appropriate retention period, we consider:",
+        "The amount, nature, and sensitivity of the data",
+        "The risk of harm from unauthorized use or disclosure",
+        "The purposes for which we process the data",
+        "Whether those purposes can be achieved by other means",
+        "Relevant legal requirements",
+        "When we no longer need personal data, we will delete it, de-identify it (anonymize), or isolate it from any further processing."
+      ]
+    },
+    {
+      "title": "Data Storage",
+      "points": [
+        "Camion users’ data will be stored within the infrastructure of cloud service providers. As a unified global shopping destination, we may need to cooperate with providers in other countries and share your personal information with them for certain purposes, such as order fulfillment. We will ensure that all transfers of personal information comply with applicable laws."
+      ]
+    },
+    {
+      "title": "Terms and Conditions of Sale",
+      "points": [
+        "You acknowledge and agree that:",
+        "The Camion store is an online marketplace where sellers offer their products for sale and buyers purchase those products.",
+        "Camion will accept binding sales on behalf of the seller, but (unless Camion is the selling party) Camion is not a party to the transaction between the seller and the buyer; a contract of sale and purchase for the product(s) is concluded between the seller and the buyer; therefore you commit to purchase or sell the product(s) upon the buyer’s confirmation of the purchase on Camion.",
+        "The sale and purchase contract between the buyer and the seller is subject to the seller’s terms of business in accordance with these general terms and conditions. Nevertheless, the following provisions apply to the sale and purchase contract between the buyer and the seller:",
+        "The product shall be sold at the price listed in the product listing;",
+        "The product price includes all types of taxes in compliance with all applicable laws in the territory from time to time;",
+        "Delivery, packaging and transport charges, administrative fees, insurance costs, and other additional costs and fees are payable by the buyer only if such fees and costs are clearly stated on the product page;",
+        "Products must be of satisfactory quality to the buyer and be suitable and safe for any purpose specified in the product description, and must match all physical specifications per the product description as listed by the seller on Camion;",
+        "With respect to tangible products, the seller represents that it has the right to sell the products, is the legal and sole beneficial owner of the products, and/or has the right to supply the products under this agreement; and that the products are not subject to any third-party rights or restrictions including third-party intellectual property rights and/or any criminal proceedings, insolvency, investigations, or tax proceedings. With respect to digital products, the seller represents the right to provide these digital products to the purchaser;",
+        "The seller warrants that where such conditions exist for the sold product, the seller will provide a detailed disclosure of the product terms and any valid warranty and any other terms necessary to inform the buyer about the product and its use in the specifications section provided on each product page."
+      ]
+    },
+    {
+      "title": "Product Returns and Refunds",
+      "points": [
+        "Product returns by buyers and acceptance of returned products by the seller are managed by Camion in accordance with the Returns page on the Camion website, as it may be amended from time to time. Acceptance of returned products is at Camion’s discretion and is subject to applicable laws in the territory.",
+        "Refunds for returned products are handled in accordance with the Refund page on the Camion website, as it may be amended from time to time. Camion’s refund rules apply at Camion’s discretion, subject to applicable laws in the region. Camion may offer refunds for returned products at its discretion, taking into account the following:",
+        "The product price;",
+        "Local and/or international shipping fees (as set out on the Refund page);",
+        "The refund will be made by crediting the account on the Camion website, an e-wallet, vouchers, phone transfer, bank transfer, or any other method we may determine from time to time;",
+        "If a bank/postal transfer is refused, the relevant department will contact you to request new refund details. If you do not respond, we will send an email to the address registered with us and wait for your correct details, and try again later. If 10 business days pass without response, the amount will automatically be converted to a voucher and you will not be able to transfer the value of this voucher through the bank or post;",
+        "Returned products are accepted and refunds are issued by Camion on behalf of the seller;",
+        "Amendments made to the Returns or Refunds pages apply to all purchases from the date the amendment is published on the Camion website;",
+        "Amounts due under these general terms and conditions are payable in accordance with the payment information and guidelines on the Camion store."
+      ]
+    },
+    {
+      "title": "Payments",
+      "points": [
+        "Payments are processed in accordance with the payment guidelines on the platform.",
+        "Camion reserves the right to adjust or cancel rewards or store credit if misuse is suspected."
+      ]
+    },
+    {
+      "title": "Store Credit",
+      "points": [
+        "Store credits may be earned and managed in accordance with Camion’s store credit terms and conditions, which may be amended from time to time. Camion reserves the right to cancel or withdraw Camion store credit rewards for any reason at its discretion, including suspicion of fraud or manipulation. You can view the store credit terms and any information about Camion store credit on our website and mobile app."
+      ]
+    },
+    {
+      "title": "Promotions",
+      "points": [
+        "Promotions and contests conducted by Camion and/or other promoters are managed in accordance with the promotions’ terms and conditions, which you can view on our website or mobile app.",
+        "The maximum quantity available for a single product per buyer may be limited through the shopping cart in order to allow the widest number of users to benefit from the promotion. If an order is repeated twice, your order may be canceled."
+      ]
+    },
+    {
+      "title": "Your Content Rules",
+      "points": [
+        "In these general terms and conditions, ‘your content’ refers to:",
+        "All works and materials (including but not limited to written text, graphics, images, audio content, video, audiovisual materials, scripts, software, and files) that a seller submits to Camion for storage, publication, processing, or later transmission; all communications on the Camion website, including product reviews.",
+        "Your content and Camion’s use of it must be accurate, complete, and truthful in accordance with these general terms and conditions.",
+        "Your content must be decent, civilized, and tasteful, and comply with generally accepted standards of decency and online behavior. Content must not be offensive, indecent, inappropriate, pornographic, obscene, suggestive or sexual; depict violence in an explicit, graphic or unjustified manner; promote violation of laws regarding race, religion, hatred, or discrimination; be deceptive, fraudulent, threatening, harassing, anti-social, inciting hatred or discrimination, or inflammatory; or be content likely to cause unwarranted harassment, inconvenience or distress to any person; or be spam or unwanted. Camion reserves the right to modify or delete any violating content without prior notice.",
+        "Your content must not be unlawful or illegal, infringe any legal rights of any person, or give rise to any legal action against any person (in any jurisdiction and under any applicable law).",
+        "Any copyright, moral rights, database rights, trademark rights, design rights, rights in intellectual property, or any other intellectual property rights.",
+        "Any rights of confidence, privacy rights, or rights under data protection laws.",
+        "Any contractual obligations owed to any person; or any court order.",
+        "You agree not to use the website to link to any website or web page that comprises or offers content that would breach these general terms and conditions if published on Camion.",
+        "You agree not to display any content on Camion that is or has been the subject of any legal proceedings or similar complaints from any third party.",
+        "The rating feature on Camion is used to facilitate product evaluation by buyers. You may not use the rating feature or any other form of communication to provide inaccurate, incorrect, or fake reviews.",
+        "You agree not to interfere with any type of transaction by: contacting another user to buy or sell a product listed on Camion outside the Camion platform; or communicating with a user who has active or completed transactions to warn them about a buyer, seller, or specific product; or contacting another user with the intent to collect any payments.",
+        "You acknowledge that all users of the Camion store are solely responsible for interacting with other users, and you must exercise caution when communicating with users and not send personal information, including credit card details, to users.",
+        "Camion has the right to review your content periodically and to remove any content at its discretion for any reason.",
+        "You must notify Camion immediately if you discover any illegal content or activity on the Camion website or any content or activity that violates these general terms and conditions, by contacting Camion in accordance with the ‘Contact’ section of the terms."
+      ]
+    },
+    {
+      "title": "Our Rights to Use Your Content",
+      "points": [
+        "You grant Camion a worldwide, non-exclusive, irrevocable, royalty-free license to use, adapt, copy, publish, translate, and distribute your content through Camion’s marketing channels and any current or future media.",
+        "You grant Camion the right to sublicense the licensed rights to other parties.",
+        "You grant Camion the right to bring an action for infringement of the licensed rights.",
+        "You hereby waive all of your moral rights in your content to the maximum extent permitted by applicable law; and you represent and warrant that all other moral rights in your content have been waived to the maximum extent permitted under the law of the territory.",
+        "If you breach the content rules in any way, or if Camion reasonably suspects that you have breached the content rules, Camion may delete, unpublish, or edit any or all of your content without prejudice to Camion’s other rights under these general terms and conditions."
+      ]
+    },
+    {
+      "title": "Use of the Website and Mobile Apps",
+      "points": [
+        "The terms ‘store’ and ‘site’ are used interchangeably to refer to the Camion website and mobile apps.",
+        "You may:",
+        "View pages from the Camion website in a browser;",
+        "Download pages from the Camion website for temporary caching;",
+        "Print pages from the Camion website for personal and non-commercial use, provided such printing is not systematic or excessive;",
+        "Download audio and video files from the Camion website using the media player; and use our store services via the browser, subject to the other provisions of these general terms and conditions.",
+        "Except as expressly permitted in these general terms and conditions or other texts herein, you agree not to download any content from the Camion website or save any of this content on your computer.",
+        "The Camion website may only be used for your personal purposes and commercial purposes in connection with selling or purchasing products on the Camion website.",
+        "You agree not to edit or modify any content on the Camion website, except as expressly permitted in these general terms and conditions.",
+        "Unless you own or control the relevant rights in any content on the Camion website, you agree not to republish content from Camion (including republication on another website); sell, rent, or sublicense content from the Camion website; show any content from the Camion website in public; exploit content for commercial purposes; or redistribute content. Notwithstanding the foregoing, product links may be forwarded and Camion’s newsletter and promotional content may be redistributed in print or electronic form to any person.",
+        "Camion has the right to suspend or restrict access to the Camion website in whole or in part and/or use of any feature on the website. For example, Camion may suspend access to the site while performing server maintenance or updates to the website. You agree not to circumvent or bypass any access procedures to the Camion website."
+      ]
+    },
+    {
+      "title": "You Agree Not to Do the Following",
+      "points": [
+        "Use the Camion website in any way or take any action that causes, or may cause, damage to the website or impairment of the performance, availability, accessibility, integrity, or security of the website.",
+        "Use the Camion website in any unethical, unlawful, illegal, fraudulent, or harmful way or in connection with any unlawful, illegal, fraudulent, or harmful purpose or activity.",
+        "Hack or tamper with the Camion website.",
+        "Probe, scan, or test the website without Camion’s permission.",
+        "Circumvent any authentication or protection systems or procedures on or related to our website.",
+        "Use the Camion website to copy, store, host, transmit, send, use, publish, or distribute any content consisting of any spyware or computer virus.",
+        "Impose an unreasonable or disproportionately large load on the resources of the Camion website (including bandwidth, storage capacity, and processing capacity).",
+        "Decrypt any communications sent by or to our website without Camion’s permission.",
+        "Conduct any systematic or automated data collection activities (including without limitation scraping, data mining, data extraction, and data harvesting) on or in relation to our website without our express written consent.",
+        "Access or interact with the Camion website using any robot or other automated means, except for the purpose of search engine indexing.",
+        "Use our website except through our public interface on the Camion website; breach the instructions in the data use file; use data collected from the Camion website for any direct marketing activity (including without limitation email, SMS, telemarketing, and direct mail); or do anything that interferes with the normal use of the Camion website."
+      ]
+    },
+    {
+      "title": "Copyright and Trademarks",
+      "points": [
+        "Subject to the express provisions of these general terms and conditions:",
+        "Camion, together with its licensors, owns all copyrights and other intellectual property rights in the Camion website and all content on the website; and all such rights are reserved.",
+        "All Camion logos and other registered and unregistered trademarks are trademarks owned solely by Camion; Camion does not permit the use of these trademarks, and their use constitutes an infringement of Camion’s rights.",
+        "Third-party trademarks, whether registered or unregistered, on the Camion website are the property of their respective owners. Camion does not warrant and has no connection with the owners of those trademarks and cannot grant any licenses for such marks."
+      ]
+    },
+    {
+      "title": "Privacy and Confidentiality of Data",
+      "points": [
+        "Sellers agree to the processing of their personal data in accordance with Camion’s Privacy Notice and Cookie Notice.",
+        "Camion processes all personal data obtained through the Camion store and related services in accordance with the Privacy Notice, Cookie Notice, and Privacy Policy.",
+        "Sellers bear full responsibility directly to buyers in the event of misuse of buyers’ personal data, and Camion will not be responsible to buyers in the event of such misuse."
+      ]
+    },
+    {
+      "title": "Account Protection and Security Privacy",
+      "points": [
+        "Camion is committed to using modern encryption technologies to protect account and transaction data.",
+        "Instant security notifications are sent if there is unusual activity on the account.",
+        "Some sensitive operations require additional verification procedures (OTP).",
+        "Users are advised to enable two-factor authentication (2FA) to protect their accounts.",
+        "Payments are processed through approved gateways compliant with PCI-DSS security standards.",
+        "Camion welcomes vulnerability reports and may grant discretionary rewards for validated reports.",
+        "Users must not share login credentials or leave accounts logged in on insecure devices.",
+        "User activity is logged within the platform for protection and legal follow-up purposes.",
+        "Camion has the right to temporarily suspend an account if suspicious activity is detected until verification.",
+        "It is strictly prohibited to upload or share any files that contain malware."
+      ]
+    },
+    {
+      "title": "Dispute Resolution",
+      "points": [
+        "If a dispute arises between the buyer and the seller, Camion’s published dispute resolution policy on the platform is followed.",
+        "Camion does not bear direct responsibility for the dispute unless it is a party to it."
+      ]
+    },
+    {
+      "title": "Due Diligence and Audit Rights",
+      "points": [
+        "Camion operates an anti-money laundering (AML) program and reserves the right to conduct due diligence checks on all users of the Camion store.",
+        "You undertake to provide all information and documents related to your business, in addition to allowing access to your business premises upon our request for the following reasons:",
+        "To verify your compliance with the terms and conditions of this agreement and your fulfillment of your obligations under it;",
+        "To provide statements pursuant to an order issued by a court or other governmental authority; or as required by applicable laws or regulations."
+      ]
+    },
+    {
+      "title": "Camion’s Role as an Online Store",
+      "points": [
+        "You acknowledge the following:",
+        "Camion facilitates a marketplace for buyers and third-party sellers or Camion itself, where Camion may be the seller of the product.",
+        "The seller of the product concerned (whether Camion or a third-party seller) is at all times solely responsible for the products sold through the store. In the event of a problem arising from the purchase of a product from the store, the buyer must refer to the product’s seller by following the procedures set out in Camion’s dispute resolution policy.",
+        "If a customer places an order including more than one unit of the same product, or places more than one order for the same item, this will be considered a commercial order and all orders will be canceled, keeping only one product even if the order was confirmed.",
+        "We are committed to ensuring that Camion or any third-party seller, as appropriate, provides complete, accurate, and up-to-date information regarding their products on the store, and accordingly:",
+        "The relevant seller represents and warrants the completeness and accuracy of information related to its products published on our store; the relevant seller represents and warrants that the materials on the store are up to date; and if the buyer has a complaint regarding the accuracy or completeness of product information received from the seller (including when Camion is the seller), the buyer may resort to the relevant seller by following the procedure set out in Camion’s dispute resolution policy.",
+        "We do not guarantee or warrant that the store will operate error-free; or that the store or any service in the store will remain available during events beyond Camion’s control (force majeure events), which include without limitation floods, drought, earthquakes or other natural disasters; hacking, viruses, malware or other malicious attacks on the store; terrorist attacks or civil war or civil disturbances or riots; war or the threat or preparation for war; pandemics; or unconstitutional events or circumstances that materially and adversely affect the political or macroeconomic stability of the territory.",
+        "We reserve the right to stop or change some or all of our store services, and to stop publishing our store at any time at our sole discretion without notice or explanation; you will not be entitled to any compensation or other payments for stopping or changing any of the store services, or if we stop publishing the store, without prejudice to your rights regarding any unfulfilled orders or other existing obligations on Camion.",
+        "If we stop or change any or all of our store in circumstances not related to force majeure, we will provide prior notice to buyers and sellers of no less than fifteen (15) days with clear guidance on how to proceed with pending transactions or any other obligations on Camion.",
+        "We do not guarantee any commercial results related to the use of the store.",
+        "We exclude all representations and warranties relating to the subject matter of these general terms and conditions, our store, and the use of our store to the fullest extent permitted by applicable law."
+      ]
+    },
+    {
+      "title": "Limitation and Exclusion of Liability",
+      "points": [
+        "Nothing in the general terms and conditions limits any liability in any way that is contrary to applicable law; or excludes any legal obligations or rights that may not be excluded by law. The limitation and exclusion of liability and other provisions set out in these general terms and conditions govern.",
+        "All obligations arising under these general terms and conditions or related to the subject of these general terms and conditions, including tort liability (including negligence) and obligations arising by operation of law, are governed by these terms except as expressly provided herein.",
+        "Camion is not liable to you for any loss or damage of any kind arising from services provided free of charge.",
+        "Camion’s total liability to you in relation to any contract to provide services to you under these general terms and conditions will not exceed the total amount paid or payable to Camion under that contract. Each transaction on the Camion store is a separate contract for the purposes of this section. Without prejudice to the foregoing, Camion is not liable to you for any loss or damage of any kind, including in relation to:",
+        "Any losses arising from any interruption or malfunction of the website;",
+        "Any losses arising from any event or events beyond Camion’s reasonable control;",
+        "Any business losses, including without limitation: loss of or damage to profits, income, revenue, use, production, anticipated savings, business, contracts, commercial opportunities, or goodwill;",
+        "Any loss of or damage to any data, database, or software; or any special, indirect, or consequential loss or damage;",
+        "Please note that order details cannot be modified after execution, so please check the accuracy of the information provided in your order such as phone number, name, and address. Camion is not responsible for any cancellation resulting from inaccuracies in delivery details;",
+        "As it is in Camion’s interest to limit the personal liability of its officers and employees, and considering this interest, you acknowledge that Camion is a limited liability entity; you agree and undertake not to bring any personal claim against Camion’s officers or employees in respect of any losses you suffer that relate to the Camion store or these general terms and conditions (this does not limit or exclude the limited liability entity’s liability for the acts and omissions of Camion’s officers and employees);",
+        "The Camion website contains links to third-party websites owned and operated by others; these links are not recommendations, and we have no control over third-party websites and their content, and we accept no responsibility for them or for any loss or damage that may result from your use of them."
+      ]
+    },
+    {
+      "title": "Indemnity",
+      "points": [
+        "Under these general terms and conditions, you undertake to indemnify Camion against:",
+        "Any and all losses, damages, costs, liabilities, and expenses (including without limitation legal expenses and any amounts paid by Camion to any third party in settlement of a claim or dispute) incurred by Camion arising directly or indirectly from your use of the Camion store or any breach by you of any provision of these general terms and conditions or any of Camion’s provisions, policies, or guidelines;",
+        "And any VAT liability or any other tax liability that Camion may incur in relation to any sale, supply, or purchase made through the Camion store, arising from your failure to pay, withhold, declare, or register to pay VAT or any other tax due in any territory."
+      ]
+    },
+    {
+      "title": "Breach of the General Terms and Conditions",
+      "points": [
+        "If Camion allows an account to be registered on the Camion store, it will remain in existence indefinitely, subject to these general terms and conditions.",
+        "If you breach any obligation contained in these general terms and conditions, or if Camion suspects that you have breached the general terms and conditions or any of Camion’s provisions, policies, or guidelines in any way, Camion has the right to:",
+        "Temporarily suspend your access to the Camion store;",
+        "Permanently prevent you from accessing the Camion store; or communicate with any or all of your ISPs to request that they block your access to the Camion store; suspend or delete your account on the Camion website; and/or commence legal action against you, whether for breach of contract or otherwise;",
+        "You agree not to take any action to circumvent suspension, prohibition, or blocking of your access to the Camion store (including without limitation creating and/or using a different account) in the event that Camion suspends, prohibits, or blocks your access to the Camion store in whole or in part."
+      ]
+    },
+    {
+      "title": "Entire Agreement",
+      "points": [
+        "These general terms and conditions and Camion’s provisions, policies, and guidelines (and for sellers, the seller’s terms and conditions) constitute the entire agreement between you and Camion in relation to your use of the Camion store and supersede all previous agreements between you and Camion."
+      ]
+    },
+    {
+      "title": "Order of Terms and Conditions",
+      "points": [
+        "In the event of a conflict between these general terms and conditions and the seller’s terms and conditions, and Camion’s provisions, policies, and guidelines; these general terms and conditions, the seller’s terms and conditions, and Camion’s provisions, policies, and guidelines will apply in the order set out in this section."
+      ]
+    },
+    {
+      "title": "Review and Modification",
+      "points": [
+        "Camion has the right to review these general terms and conditions, the seller’s terms and conditions, and Camion’s provisions, policies, and guidelines from time to time and to make amendments at any time.",
+        "The revised general terms and conditions apply from the date of publication on the Camion store."
+      ]
+    },
+    {
+      "title": "Non-Waiver",
+      "points": [
+        "No waiver of any breach of any provision of these general terms and conditions shall be interpreted as an implied or continuing waiver of any other breach of these terms and conditions or any breach of any other provision of these general terms and conditions."
+      ]
+    },
+    {
+      "title": "Severability",
+      "points": [
+        "If any court or other competent authority determines that any provision of these general terms and conditions is unlawful and/or unenforceable, the other provisions will remain in effect.",
+        "If any unlawful and/or unenforceable provision of these general terms and conditions would be lawful or enforceable if part of it were deleted, that part will be deemed to be deleted, and the rest of the provision will continue in effect."
+      ]
+    },
+    {
+      "title": "Assignment",
+      "points": [
+        "You agree that Camion may assign, transfer, subcontract, or otherwise dispose of its rights and/or obligations under these general terms and conditions.",
+        "You may not, without Camion’s written consent, assign, transfer, subcontract, or otherwise dispose of any of your rights and/or obligations under these general terms and conditions."
+      ]
+    },
+    {
+      "title": "Third-Party Rights",
+      "points": [
+        "The contract under these general terms and conditions is for our benefit and your benefit, and is not intended to benefit any third party or be enforceable by any third party.",
+        "The exercise of the parties’ rights under a contract entered into under these general terms and conditions is not subject to the consent of any third party."
+      ]
+    },
+    {
+      "title": "Law and Jurisdiction",
+      "points": [
+        "These general terms and conditions are governed by and construed in accordance with the laws of the State of Qatar and international law.",
+        "Any disputes relating to these general terms and conditions are subject to the jurisdiction of the courts of the State of Qatar and international courts."
+      ]
+    },
+    {
+      "title": "Marketing Vouchers",
+      "points": [
+        "The company has the right to cancel any orders placed by any customer who violates the fair use policy by using more than one voucher from more than one account at the same time.",
+        "Some customers obtain automatic discounts under their program, and therefore they are not entitled to use any promotional vouchers or ‘spin the wheel’ vouchers. Any order placed in violation of this condition will be canceled."
+      ]
+    },
+    {
+      "title": "Camion Company Details and Notices",
+      "points": [
+        "You can contact us using the contact details listed in the annex.",
+        "You can communicate with our sellers for after-sales inquiries, including any disputes, by requesting their contact details from Camion in accordance with Camion’s dispute resolution policy, under which Camion undertakes to ensure that the seller can be clearly identified.",
+        "You agree to receive notifications electronically from Camion. We may provide all communications and information related to your use of the store in electronic form, either by posting on our website or app, or by email to the email address in your account. All such communications will be deemed written notices, properly received and duly delivered."
+      ]
+    }
+  ]
+}

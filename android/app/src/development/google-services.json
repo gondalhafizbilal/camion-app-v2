@@ -1,0 +1,106 @@
+{
+  "project_info": {
+    "project_number": "577587095942",
+    "project_id": "camion-21921",
+    "storage_bucket": "camion-21921.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577587095942:android:a1801b9a87ffacde78a407",
+        "android_client_info": {
+          "package_name": "com.camion.development"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577587095942-tu1hfrublb35p0ri74msghnh53uuqgfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-DeGePk-OALHs6-A3YnCp5jPlACavJlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577587095942-rq180g190gp7ae1333m0hpdjdjkqvcah.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "577587095942-51gpeoqt7l1m8ofbbjm2b2g4e2a1tpec.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.quality.camion"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577587095942:android:0a43ccd877c56e6b78a407",
+        "android_client_info": {
+          "package_name": "com.camiontrading.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577587095942-7boenj35h8i3l1e40gtv5ctpvtv0jt8c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.camiontrading.app",
+            "certificate_hash": "d7b907727fe5d0239021711ed2670638c33ed0df"
+          }
+        },
+        {
+          "client_id": "577587095942-ihaifvt5jth2pb5a8bhn29lbqa9d8vr2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.camiontrading.app",
+            "certificate_hash": "7d7dfd699302dc8b4437389c83eccbd1343c8bd5"
+          }
+        },
+        {
+          "client_id": "577587095942-vr7vpp5ulkqhig82h5b3tde3vj54k9l5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.camiontrading.app",
+            "certificate_hash": "ba9597687d265314b1e95c7a2276bce007684d5a"
+          }
+        },
+        {
+          "client_id": "577587095942-tu1hfrublb35p0ri74msghnh53uuqgfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-DeGePk-OALHs6-A3YnCp5jPlACavJlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577587095942-rq180g190gp7ae1333m0hpdjdjkqvcah.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "577587095942-51gpeoqt7l1m8ofbbjm2b2g4e2a1tpec.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.quality.camion"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

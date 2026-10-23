@@ -1,0 +1,146 @@
+import 'package:camion/config/widgets/custom_text_form_field.dart';
+import 'package:camion/core/utils/app_colors.dart';
+import 'package:camion/core/utils/app_style.dart';
+import 'package:camion/features/auth/presentation/widgets/all_contries_and_language_list.dart';
+import 'package:camion/generated/l10n.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+class SelectingCountry extends StatefulWidget {
+  const SelectingCountry({
+    super.key,
+    required TextEditingController countryController,
+  }) : _countryController = countryController;
+
+  final TextEditingController _countryController;
+
+  @override
+  State<SelectingCountry> createState() => _SelectingCountryState();
+}
+
+class _SelectingCountryState extends State<SelectingCountry> {
+  void _showCountryPicker() async {
+    final selectedCountry = await showModalBottomSheet<String>(
+      context: context,
+      useRootNavigator: true,
+      useSafeArea: true,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+      ),
+      builder: (context) {
+        final isArabic = Localizations.localeOf(context).languageCode == 'ar';
+        TextEditingController localSearchController = TextEditingController();
+
+        List<String> localFilteredCountries = List.from(allCountries);
+
+        return StatefulBuilder(
+          builder: (context, setModalState) {
+            void filterLocal(String query) {
+              setModalState(() {
+                if (query.isEmpty) {
+                  localFilteredCountries = List.from(allCountries);
+                } else {
+                  final searchQuery = query.trim();
+                  localFilteredCountries = allCountries.where((country) {
+                    final cleanCountry = country.trim();
+                    final cleanQuery = searchQuery;
+
+                    return cleanCountry.contains(cleanQuery) ||
+                        cleanCountry.toLowerCase().contains(
+                          cleanQuery.toLowerCase(),
+                        );
+                  }).toList();
+                }
+              });
+            }
+
+            localSearchController.addListener(() {
+              final value = localSearchController.text;
+
+              filterLocal(value);
+            });
+
+            return Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(12.r),
+                  child: CustomTextFormField(
+                    fieldColor: AppColors.primaryColor,
+                    hintText: isArabic
+                        ? 'ابحث عن ${S.of(context).country}'
+                        : S.of(context).search_for_countries,
+                    controller: localSearchController,
+
+                    prefixIcon: Icon(Icons.search, size: 24.sp),
+                  ),
+                ),
+                Expanded(
+                  child: localFilteredCountries.isEmpty
+                      ? Center(
+                          child: Text(
+                            isArabic ? 'لا توجد نتائج' : 'No results found',
+                            style: AppStyle.styleSemiBold18(context),
+                          ),
+                        )
+                      : ListView.builder(
+                          itemCount: localFilteredCountries.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(
+                                localFilteredCountries[index],
+                                textAlign: TextAlign.right,
+                              ),
+                              onTap: () {
+                                GoRouter.of(
+                                  context,
+                                ).pop(localFilteredCountries[index]);
+                              },
+                            );
+                          },
+                        ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+
+    if (selectedCountry != null) {
+      setState(() {
+        widget._countryController.text = selectedCountry;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomTextFormField(
+      readOnly: true,
+      controller: widget._countryController,
+      hintText: S.of(context).country,
+
+      suffixIcon: GestureDetector(
+        onTap: _showCountryPicker,
+        child: Container(
+          padding: EdgeInsets.all(12.h),
+          child: Icon(
+            Icons.keyboard_arrow_down,
+            color: Colors.grey.shade700,
+            size: 24.r,
+          ),
+        ),
+      ),
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return Localizations.localeOf(context).languageCode == 'ar'
+              ? 'الرجاء إدخال ${S.of(context).country}'
+              : 'Please enter your ${S.of(context).country.toLowerCase()}';
+        }
+        return null;
+      },
+    );
+  }
+}
